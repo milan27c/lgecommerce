@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import type { Product } from "@/lib/data/types";
 import { calcDiscount } from "@/lib/utils/calcDiscount";
 import { cn } from "@/lib/utils/cn";
+import { productHref } from "@/lib/utils/productHref";
 
 export interface ProductCardProps {
   product: Product;
@@ -75,7 +76,7 @@ export function ProductCard({
       <div className="flex flex-1 flex-col gap-2 p-3 pt-0">
         <h3 className="line-clamp-2 flex-1 text-body font-medium text-ink-900">
           <Link
-            href={`/p/${product.slug}`}
+            href={productHref(product)}
             className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             {product.name}
@@ -102,7 +103,7 @@ export function ProductCard({
               "pointer-fine:group-focus-within:pointer-events-auto pointer-fine:group-focus-within:opacity-100",
             )}
           >
-            <Button href={`/p/${product.slug}`} variant="ink" size="xs">
+            <Button href={productHref(product)} variant="ink" size="xs">
               Where to Buy
             </Button>
           </div>

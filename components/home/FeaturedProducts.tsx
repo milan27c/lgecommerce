@@ -27,12 +27,13 @@ export function FeaturedProducts() {
           eyebrow="Featured products"
           title="The month's standouts"
           link={{ label: "View all", href: "/best-sellers" }}
+          align="center-mobile"
         />
 
         <div
           role="tablist"
           aria-label="Featured products by category"
-          className="no-scrollbar -mx-4 mb-6 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0"
+          className="mb-6 flex flex-wrap justify-center gap-2 sm:no-scrollbar sm:flex-nowrap sm:justify-start sm:overflow-x-auto"
         >
           {tabs.map((tab) => {
             const selected = tab.id === active;
@@ -66,7 +67,7 @@ export function FeaturedProducts() {
           aria-labelledby={`featured-tab-${active}`}
           className="animate-fade-in"
         >
-          <ProductGrid products={products} showOffer={false} />
+          <ProductGrid products={products} showOffer={false} singleColumnMobile />
         </div>
       </Container>
     </Section>

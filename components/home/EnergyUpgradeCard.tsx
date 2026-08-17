@@ -4,6 +4,7 @@ import type { LaneTone } from "@/lib/data/energy";
 import { cn } from "@/lib/utils/cn";
 import type { LaneForecast } from "@/lib/utils/forecastSavings";
 import { formatPrice } from "@/lib/utils/formatPrice";
+import { productHref } from "@/lib/utils/productHref";
 
 /** The lane's tone as a chip fill — same colour it holds in the load split. */
 const chips: Record<LaneTone, string> = {
@@ -51,7 +52,7 @@ export function EnergyUpgradeCard({ lane }: EnergyUpgradeCardProps) {
 
         <h4 className="line-clamp-2 flex-1 text-body font-medium text-ink-900">
           <Link
-            href={`/p/${product.slug}`}
+            href={productHref(product)}
             className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 focus-visible:ring-offset-2"
           >
             {product.name}

@@ -22,7 +22,7 @@ import {
   type SortKey,
 } from "@/lib/utils/filterCatalog";
 
-const CARD_SIZES = "(min-width: 1280px) 20vw, (min-width: 640px) 30vw, 45vw";
+const CARD_SIZES = "(min-width: 1280px) 20vw, (min-width: 640px) 30vw, 90vw";
 
 export function ShopCatalog() {
   const [filters, setFilters] = useState<CatalogFilters>(defaultFilters);
@@ -66,8 +66,9 @@ export function ShopCatalog() {
       </aside>
 
       <div ref={resultsRef} className="min-w-0 flex-1 scroll-mt-28">
-        {/* Quick category switch — the same values as the Category group. */}
-        <ul className="no-scrollbar -mx-4 flex list-none gap-2 overflow-x-auto px-4 pb-4 sm:mx-0 sm:flex-wrap sm:px-0">
+        {/* Quick category switch — the same values as the Category group. Folded into the
+        floating Filters button on mobile, where the drawer already covers category. */}
+        <ul className="no-scrollbar -mx-4 hidden list-none gap-2 overflow-x-auto px-4 pb-4 sm:mx-0 sm:flex sm:flex-wrap sm:px-0">
           <li>
             <button
               type="button"
@@ -112,13 +113,13 @@ export function ShopCatalog() {
           })}
         </ul>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-neutral-200 bg-white px-4 py-3">
-          <p className="text-sm text-neutral-500">
+        <div className="flex flex-nowrap items-center justify-between gap-3 rounded-lg border border-neutral-200 bg-white px-4 py-3">
+          <p className="min-w-0 truncate text-sm text-neutral-500">
             {results.length === 0 ? (
               "No products match these filters"
             ) : (
               <>
-                Showing{" "}
+                <span className="hidden sm:inline">Showing </span>
                 <span className="font-medium tabular-nums text-ink-900">
                   {start + 1}–{start + visible.length}
                 </span>{" "}
@@ -128,13 +129,13 @@ export function ShopCatalog() {
             )}
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
               className={cn(
-                "inline-flex h-10 items-center gap-2 rounded-md border border-neutral-200 bg-white px-3.5 text-body font-medium text-ink-900",
-                "transition-colors dur-fast ease-out hover:border-neutral-300 hover:text-accent-600 lg:hidden",
+                "hidden h-10 items-center gap-2 rounded-md border border-neutral-200 bg-white px-3.5 text-body font-medium text-ink-900",
+                "transition-colors dur-fast ease-out hover:border-neutral-300 hover:text-accent-600 sm:inline-flex lg:hidden",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
               )}
             >
@@ -189,7 +190,7 @@ export function ShopCatalog() {
             // Remounting per page cross-fades the new set in; filter changes
             // reconcile in place so dragging the price slider stays smooth.
             key={current}
-            className="mt-5 grid list-none animate-fade-in grid-cols-2 items-stretch gap-3 sm:grid-cols-3 lg:gap-5 xl:grid-cols-4"
+            className="mt-5 grid list-none animate-fade-in grid-cols-1 items-stretch gap-3 sm:grid-cols-3 lg:gap-5 xl:grid-cols-4"
           >
             {visible.map((product) => (
               <li key={product.slug} className="h-full">
@@ -220,6 +221,26 @@ export function ShopCatalog() {
           className="mt-10"
         />
       </div>
+
+      {/* Mobile-only floating trigger — tabs and the inline Filters button both
+      fold into this below sm, since the drawer already covers category. */}
+      <button
+        type="button"
+        onClick={() => setDrawerOpen(true)}
+        className={cn(
+          "fixed bottom-6 left-1/2 z-40 inline-flex h-12 -translate-x-1/2 items-center gap-2 rounded-full bg-ink-900 px-5",
+          "text-body font-medium text-white shadow-lg transition-colors dur-fast ease-out hover:bg-ink-800 sm:hidden",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
+        )}
+      >
+        <FilterIcon className="size-4.5" />
+        Filters
+        {activeCount > 0 ? (
+          <span className="grid size-5 place-items-center rounded-full bg-accent-500 text-xs font-bold text-white">
+            {activeCount}
+          </span>
+        ) : null}
+      </button>
 
       <FilterDrawer
         open={drawerOpen}

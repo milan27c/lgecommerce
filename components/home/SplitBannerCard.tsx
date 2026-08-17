@@ -17,7 +17,7 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
 
   return (
     <Reveal as="li" index={index}>
-      <div className="group relative aspect-video overflow-hidden rounded-2xl bg-neutral-100 transition-transform dur-base ease-out hover:-translate-y-1">
+      <div className="group relative aspect-hero-mobile overflow-hidden rounded-2xl bg-neutral-100 transition-transform dur-base ease-out hover:-translate-y-1 md:aspect-video">
         {/* Background only — never text, never product images. */}
         <div
           ref={ref}
@@ -29,7 +29,14 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
             alt=""
             fill
             sizes="(min-width: 1024px) 620px, 100vw"
-            className="object-cover transition-transform dur-slow ease-out group-hover:scale-104"
+            className="hidden object-cover transition-transform dur-slow ease-out group-hover:scale-104 md:block"
+          />
+          <Image
+            src={banner.mobileImage ?? banner.image}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover transition-transform dur-slow ease-out group-hover:scale-104 md:hidden"
           />
         </div>
 

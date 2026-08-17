@@ -26,8 +26,8 @@ export interface ProductRailProps {
 }
 
 const widths: Record<4 | 5, string> = {
-  4: "w-2/5 sm:w-1/3 lg:w-1/4",
-  5: "w-2/5 sm:w-1/3 lg:w-1/5",
+  4: "w-full sm:w-1/3 lg:w-1/4",
+  5: "w-full sm:w-1/3 lg:w-1/5",
 };
 
 export function ProductRail({
@@ -115,7 +115,7 @@ export function ProductRail({
             <ProductCard
               product={product}
               rank={ranked ? product.rank : undefined}
-              sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 40vw"
+              sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 100vw"
             />
           </li>
         ))}

@@ -20,7 +20,7 @@ export function Footer() {
     <footer className="bg-ink-900 text-ink-200">
       <Container>
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:grid-cols-3 lg:grid-cols-5 lg:py-18">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+          <div className="col-span-2 flex flex-col items-center text-center sm:col-span-3 sm:items-start sm:text-left lg:col-span-1">
             <Logo size="sm" tone="dark" />
             <p className="mt-4 max-w-xs text-sm text-ink-300">Living Just Right — LG, curated.</p>
             <ul className="mt-5 flex items-center gap-2">
@@ -39,7 +39,11 @@ export function Footer() {
           </div>
 
           {footerColumns.map((column) => (
-            <nav key={column.title} aria-label={column.title}>
+            <nav
+              key={column.title}
+              aria-label={column.title}
+              className="flex flex-col items-center text-center sm:items-start sm:text-left"
+            >
               <h2 className="mb-4 text-xs uppercase text-white">{column.title}</h2>
               <ul className="flex flex-col gap-2.5">
                 {column.links.map((link) => (
@@ -54,7 +58,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 border-t border-ink-800 py-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 border-t border-ink-800 py-6 sm:justify-start">
           <span className="mr-2 text-xs uppercase text-ink-400">We accept</span>
           {paymentMethods.map((method) => (
             <span
@@ -66,7 +70,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-ink-800 py-6 text-sm text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-center gap-2 border-t border-ink-800 py-6 text-center text-sm text-ink-400 sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p>© {new Date().getFullYear()} Living Just Right. All rights reserved.</p>
           <p>
             An independent LG stockist. This is a design prototype and is not affiliated with LG

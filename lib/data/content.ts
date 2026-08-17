@@ -27,21 +27,21 @@ export const showcaseCards: ShowcaseCard[] = [
     title: "Refrigerators",
     itemCount: 42,
     href: "/c/appliances/refrigerators",
-    image: "https://picsum.photos/seed/showcase-refrigerators/800/1000",
+    image: "/images/room by room/Refrigerators.png",
   },
   {
     id: "washing-machines",
     title: "Washing Machines",
     itemCount: 36,
     href: "/c/appliances/washing-machines",
-    image: "https://picsum.photos/seed/showcase-washing-machines/800/500",
+    image: "/images/room by room/washing machines.png",
   },
   {
     id: "air-conditioners",
     title: "Air Conditioners",
     itemCount: 28,
     href: "/c/air-solutions/air-conditioners",
-    image: "https://picsum.photos/seed/showcase-air-conditioners/800/500",
+    image: "/images/room by room/ac.png",
   },
 ];
 
@@ -97,9 +97,9 @@ export const reviews: Review[] = [
     id: "review-1",
     rating: 5,
     quote:
-      "Delivered in two days and the installers took the old unit away. The C4 is every bit as good as the showroom demo.",
+      "Delivered in two days and the installers took the old set away. The QNED65 is every bit as good as the showroom demo.",
     name: "Nadia R.",
-    product: 'OLED evo C4 65"',
+    product: 'QNED65 MiniLED 43"',
   },
   {
     id: "review-2",
@@ -113,9 +113,9 @@ export const reviews: Review[] = [
     id: "review-3",
     rating: 4,
     quote:
-      "The DUALCOOL runs quiet enough to sleep through and the power bill dropped noticeably in the first month.",
+      "The Dual Inverter runs quiet enough to sleep through and the power bill dropped noticeably in the first month.",
     name: "Ayesha F.",
-    product: "DUALCOOL Inverter 1.5 Ton",
+    product: "Dual Inverter Split AC 24,000 BTU",
   },
 ];
 
@@ -126,14 +126,14 @@ export interface FeatureBullet {
 
 export const featureBand = {
   eyebrow: "The premium moment",
-  headline: "OLED evo G4, engineered for the dark",
-  copy: "Brightness Booster Ultimate and MLA+ push peak highlights further without lifting a single black level.",
+  headline: "NanoCell NU870, tuned for everyday brilliance",
+  copy: "NanoCell filtering and the α5 AI Processor hold colour accurate at any brightness, upscaling everything you watch to 4K.",
   bullets: [
-    { label: "Processor", value: "α11 AI Processor 4K" },
-    { label: "Panel", value: "MLA+ with Brightness Booster Ultimate" },
-    { label: "Gaming", value: "4× HDMI 2.1 at 144Hz VRR" },
+    { label: "Processor", value: "α5 AI Processor 4K Gen7" },
+    { label: "Panel", value: "NanoCell with Quantum Dot filtering" },
+    { label: "Audio", value: "20W 2.0ch with AI Sound Pro" },
   ] satisfies FeatureBullet[],
-  cta: { label: "Explore OLED evo G4", href: "/p/lg-oled-evo-g4-77-4k-smart-tv" },
+  cta: { label: "Explore NanoCell NU870", href: "/p/lg-nanocell-nu870-43-4k-smart-tv-2026" },
   image: "/images/products/TV/products/2.png",
 };
 

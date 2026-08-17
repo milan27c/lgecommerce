@@ -10,7 +10,8 @@ export interface SectionHeadingProps {
   eyebrow?: string;
   copy?: string;
   link?: { label: string; href: string };
-  align?: "start" | "center";
+  /** `center-mobile` centres title/copy/link below `sm`, reverting to `start`'s row layout at `sm` and up. */
+  align?: "start" | "center" | "center-mobile";
   /** `eco` is the energy savings band only — see CLAUDE.md §3.2a. */
   tone?: SectionHeadingTone;
   className?: string;
@@ -55,19 +56,27 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   const centred = align === "center";
+  const centredMobile = align === "center-mobile";
   const palette = tones[tone];
 
   return (
     <div
       className={cn(
         "mb-8 flex gap-4 lg:mb-10",
-        centred
-          ? "flex-col items-center text-center"
-          : "flex-col items-start sm:flex-row sm:items-end sm:justify-between",
+        centred && "flex-col items-center text-center",
+        centredMobile &&
+          "flex-col items-center text-center sm:flex-row sm:items-end sm:justify-between sm:text-left",
+        !centred && !centredMobile && "flex-col items-start sm:flex-row sm:items-end sm:justify-between",
         className,
       )}
     >
-      <div className={cn("max-w-2xl", centred && "flex flex-col items-center")}>
+      <div
+        className={cn(
+          "max-w-2xl",
+          centred && "flex flex-col items-center",
+          centredMobile && "flex flex-col items-center sm:items-start",
+        )}
+      >
         {eyebrow ? (
           <p className={cn("mb-2 text-xs uppercase", palette.eyebrow)}>{eyebrow}</p>
         ) : null}

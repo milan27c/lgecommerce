@@ -26,21 +26,25 @@ export interface SplitBanner {
   copy: string;
   href: string;
   image: string;
+  /** Portrait crop shown below `md` — falls back to `image` if absent. */
+  mobileImage?: string;
 }
 
 export const splitBanners: SplitBanner[] = [
   {
-    id: "oled-evo",
-    title: "Picture beyond pixels",
-    copy: "Every pixel lights itself, so black is genuinely black.",
-    href: "/p/lg-oled-evo-c4-65-4k-smart-tv",
+    id: "qned-miniled",
+    title: "Picture that adjusts to the scene",
+    copy: "MiniLED backlight and AI upscaling hold detail from the darkest shadow to the brightest highlight.",
+    href: "/p/lg-qned65-miniled-43-4k-smart-tv-2026",
     image: "/images/products/TV/banner.jpg",
+    mobileImage: "/images/products/TV/banner-mobile.jpg",
   },
   {
-    id: "thinq",
-    title: "Your home, in sync",
-    copy: "One AI hub for the wash, the cooling and the cold chain.",
-    href: "/p/lg-ai-appliance-hub-thinq-on",
+    id: "ai-dd-laundry",
+    title: "Laundry, on autopilot",
+    copy: "AI Direct Drive senses the load and protects every fabric, wash after wash.",
+    href: "/p/lg-11kg-ai-dd-front-load-washing-machine",
     image: "/images/products/Appliances/banner.jpg",
+    mobileImage: "/images/products/Appliances/banner-mobile.jpg",
   },
 ];

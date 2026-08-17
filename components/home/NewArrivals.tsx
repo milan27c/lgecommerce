@@ -13,6 +13,7 @@ export function NewArrivals() {
           eyebrow="Just landed"
           title="New arrivals"
           link={{ label: "View all", href: "/new-arrivals" }}
+          align="center-mobile"
         />
       </Container>
 

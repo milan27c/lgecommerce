@@ -34,7 +34,7 @@ export function DealCountdown() {
 
       <Container className="relative">
         <div className="grid gap-8 lg:grid-cols-3 lg:items-center lg:gap-10">
-          <Reveal className="lg:col-span-1">
+          <Reveal className="text-center lg:col-span-1 lg:text-left">
             <p className="mb-2 text-xs uppercase text-accent-300">Limited time offer</p>
             <h2 id="deal-countdown-heading" className="text-h3 text-white sm:text-h2">
               The clock is running on these prices
@@ -44,7 +44,7 @@ export function DealCountdown() {
               is allocated per store — once a store sells out, it stays out.
             </p>
 
-            <CountdownTimer endsAt={dealEndsAt} className="mt-6" />
+            <CountdownTimer endsAt={dealEndsAt} className="mt-6 justify-center lg:justify-start" />
 
             <Link
               href="/deals"
@@ -61,7 +61,7 @@ export function DealCountdown() {
                 key={product.slug}
                 as="li"
                 index={index}
-                className="w-2/5 shrink-0 snap-start sm:w-1/3 lg:w-auto"
+                className="w-3/5 shrink-0 snap-start sm:w-1/3 lg:w-auto"
               >
                 <DealCard
                   product={product}

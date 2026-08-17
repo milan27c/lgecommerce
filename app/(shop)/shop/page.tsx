@@ -15,7 +15,7 @@ export default function ShopPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
 
-      <div className="relative aspect-banner overflow-hidden bg-ink-900">
+      <div className="relative hidden aspect-banner overflow-hidden bg-ink-900 sm:block">
         <Image
           src="/images/shop/banner 1.png"
           alt=""

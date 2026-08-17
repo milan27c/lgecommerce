@@ -67,7 +67,7 @@ export const energyLanes: EnergyLane[] = [
     share: 0.38,
     saving: 0.42,
     note: "Dual Inverter compressor holds temperature instead of cycling",
-    productSlug: "lg-dualcool-inverter-1-5-ton-split-air-conditioner",
+    productSlug: "lg-24000btu-dual-inverter-split-ac-thinq",
     href: "/c/air-solutions/air-conditioners",
   },
   {
@@ -76,8 +76,8 @@ export const energyLanes: EnergyLane[] = [
     tone: "eco",
     share: 0.32,
     saving: 0.24,
-    note: "Linear Cooling keeps the cabinet within 0.5°C, so the motor rests",
-    productSlug: "lg-594l-side-by-side-refrigerator-linear-cooling",
+    note: "Linear Inverter Compressor keeps the cabinet within 0.5°C, so the motor rests",
+    productSlug: "lg-594l-instaview-door-in-door-matt-black",
     href: "/c/appliances/refrigerators",
   },
   {
@@ -87,7 +87,7 @@ export const energyLanes: EnergyLane[] = [
     share: 0.16,
     saving: 0.2,
     note: "MiniLED backlight dims by zone rather than lighting the whole panel",
-    productSlug: "lg-qned-miniled-qned86-65-4k-smart-tv",
+    productSlug: "lg-qned65-miniled-43-4k-smart-tv-2026",
     href: "/c/tv-audio-video/tvs",
   },
 ];
