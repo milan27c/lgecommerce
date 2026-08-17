@@ -14,7 +14,7 @@ export function ReviewSummary({ rating, count, recommend, className }: ReviewSum
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-x-5 gap-y-3 rounded-lg border border-neutral-200 bg-white p-5 sm:p-6",
+        "flex flex-wrap items-center gap-x-5 gap-y-3 rounded-none border border-neutral-200 bg-white p-5 sm:p-6",
         className,
       )}
     >

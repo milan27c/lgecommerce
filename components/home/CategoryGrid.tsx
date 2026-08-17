@@ -13,38 +13,33 @@ export function CategoryGrid() {
         <SectionHeading
           id="category-grid-heading"
           title="Shop by category"
+          titleClassName="text-section sm:text-section-lg"
           link={{ label: "All categories", href: "/c/tv-audio-video" }}
         />
-
-        <ul className="no-scrollbar -mx-4 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto px-4 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-8 lg:gap-5 lg:overflow-visible">
-          {categoryTiles.map((tile, index) => (
-            <Reveal
-              key={tile.slug}
-              as="li"
-              index={index}
-              className="w-24 shrink-0 snap-start sm:w-28 lg:w-auto"
-            >
-              <Link
-                href={tile.href}
-                className="group flex flex-col items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
-              >
-                <span className="relative aspect-square w-full overflow-hidden rounded-full bg-neutral-100">
-                  <Image
-                    src={tile.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 140px, 112px"
-                    className="object-cover transition-transform dur-base ease-out group-hover:scale-105"
-                  />
-                </span>
-                <span className="text-center text-sm font-medium text-ink-900 transition-colors dur-base ease-out group-hover:text-accent-500">
-                  {tile.name}
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </ul>
       </Container>
+
+      <ul className="no-scrollbar rail-bleed-right flex list-none snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-1 lg:gap-4">
+        {categoryTiles.map((tile, index) => (
+          <Reveal key={tile.slug} as="li" index={index} className="category-card shrink-0 snap-start">
+            <Link
+              href={tile.href}
+              className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            >
+              <span className="relative block aspect-tall w-full overflow-hidden bg-neutral-100">
+                <Image
+                  src={tile.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 230px, (min-width: 640px) 34vw, 62vw"
+                  className="object-cover transition-transform dur-slow ease-out group-hover:scale-104"
+                />
+              </span>
+              <span className="mt-4 block text-body-lg font-semibold text-ink-900">{tile.name}</span>
+              <span className="mt-1 block truncate text-sm text-neutral-500">{tile.subheading}</span>
+            </Link>
+          </Reveal>
+        ))}
+      </ul>
     </Section>
   );
 }

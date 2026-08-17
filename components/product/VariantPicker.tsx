@@ -29,7 +29,7 @@ export function VariantPicker({ group, className }: VariantPickerProps) {
               aria-pressed={isSelected}
               onClick={() => setSelected(option)}
               className={cn(
-                "rounded-md border px-4 py-2.5 text-sm",
+                "rounded-none border px-4 py-2.5 text-sm",
                 "transition-colors dur-base ease-out",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                 isSelected

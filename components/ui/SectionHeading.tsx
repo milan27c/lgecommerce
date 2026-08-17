@@ -15,6 +15,8 @@ export interface SectionHeadingProps {
   /** `eco` is the energy savings band only — see CLAUDE.md §3.2a. */
   tone?: SectionHeadingTone;
   className?: string;
+  /** Overrides the title's default `text-h3 sm:text-h2` size for one instance. */
+  titleClassName?: string;
 }
 
 const tones: Record<SectionHeadingTone, { eyebrow: string; title: string; copy: string; link: string }> = {
@@ -38,10 +40,10 @@ const tones: Record<SectionHeadingTone, { eyebrow: string; title: string; copy: 
   },
   /** The eco band's own night ground — see CLAUDE.md §3.3a. */
   "eco-dark": {
-    eyebrow: "text-eco-300",
+    eyebrow: "text-eco-400",
     title: "text-white",
-    copy: "text-teal-200",
-    link: "text-white hover:text-eco-300",
+    copy: "text-neutral-300",
+    link: "text-white hover:text-eco-400",
   },
 };
 
@@ -54,6 +56,7 @@ export function SectionHeading({
   align = "start",
   tone = "light",
   className,
+  titleClassName,
 }: SectionHeadingProps) {
   const centred = align === "center";
   const centredMobile = align === "center-mobile";
@@ -80,7 +83,7 @@ export function SectionHeading({
         {eyebrow ? (
           <p className={cn("mb-2 text-xs uppercase", palette.eyebrow)}>{eyebrow}</p>
         ) : null}
-        <h2 id={id} className={cn("text-h3 sm:text-h2", palette.title)}>
+        <h2 id={id} className={cn(titleClassName ?? "text-h3 sm:text-h2", palette.title)}>
           {title}
         </h2>
         {copy ? <p className={cn("mt-2 text-body", palette.copy)}>{copy}</p> : null}
@@ -91,7 +94,7 @@ export function SectionHeading({
           href={link.href}
           className={cn(
             "group inline-flex shrink-0 items-center gap-1.5 text-body font-medium transition-colors dur-base ease-out",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 rounded-sm",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 rounded-none",
             palette.link,
           )}
         >

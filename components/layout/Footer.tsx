@@ -13,7 +13,7 @@ const socials = [
 const paymentMethods = ["Visa", "Mastercard", "Amex", "PayPal", "Instalments"];
 
 const linkClass =
-  "text-sm text-ink-200 transition-colors dur-fast ease-out hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm";
+  "text-sm text-ink-200 transition-colors dur-fast ease-out hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-none";
 
 export function Footer() {
   return (
@@ -29,7 +29,7 @@ export function Footer() {
                   <Link
                     href={href}
                     aria-label={label}
-                    className="grid size-9 place-items-center rounded-md border border-ink-700 text-ink-200 transition-colors dur-fast ease-out hover:border-accent-400 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+                    className="grid size-9 place-items-center rounded-none border border-ink-700 text-ink-200 transition-colors dur-fast ease-out hover:border-accent-400 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
                   >
                     <Icon className="size-4.5" />
                   </Link>
@@ -63,7 +63,7 @@ export function Footer() {
           {paymentMethods.map((method) => (
             <span
               key={method}
-              className="rounded-sm border border-ink-700 px-2.5 py-1 text-sm text-ink-200"
+              className="rounded-none border border-ink-700 px-2.5 py-1 text-sm text-ink-200"
             >
               {method}
             </span>

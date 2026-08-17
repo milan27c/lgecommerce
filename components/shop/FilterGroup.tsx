@@ -33,7 +33,7 @@ export function FilterGroup({
           aria-expanded={open}
           aria-controls={panelId}
           className={cn(
-            "flex w-full items-center justify-between gap-2 rounded-sm text-left",
+            "flex w-full items-center justify-between gap-2 rounded-none text-left",
             "text-body font-medium text-ink-900 transition-colors dur-fast ease-out hover:text-accent-600",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
           )}

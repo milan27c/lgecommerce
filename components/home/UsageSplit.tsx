@@ -35,7 +35,7 @@ export function UsageSplit() {
 
       <div aria-hidden className="usage-split mt-3 h-2.5">
         {segments.map((segment) => (
-          <span key={segment.id} className={cn("rounded-full", tones[segment.tone])} />
+          <span key={segment.id} className={tones[segment.tone]} />
         ))}
       </div>
 

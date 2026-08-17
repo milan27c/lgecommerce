@@ -17,7 +17,7 @@ export function Newsletter() {
   return (
     <section aria-labelledby="newsletter-heading" className="section-y bg-neutral-50">
       <Container>
-        <div className="relative overflow-hidden rounded-2xl bg-ink-900 px-6 py-14 text-center sm:px-10 lg:py-18">
+        <div className="relative overflow-hidden rounded-none bg-ink-900 px-6 py-14 text-center sm:px-10 lg:py-18">
           <div aria-hidden className="pointer-events-none absolute inset-0 glow-accent" />
 
           <div className="relative mx-auto flex max-w-xl flex-col items-center">
@@ -34,7 +34,7 @@ export function Newsletter() {
             {submitted ? (
               <p
                 role="status"
-                className="mt-7 inline-flex items-center gap-2 rounded-md border border-success/40 px-4 py-3 text-body text-white"
+                className="mt-7 inline-flex items-center gap-2 rounded-none border border-success/40 px-4 py-3 text-body text-white"
               >
                 <span className="grid size-5 shrink-0 place-items-center rounded-full bg-success text-white">
                   <CheckIcon className="size-3" />
@@ -56,7 +56,7 @@ export function Newsletter() {
                   required
                   placeholder="you@example.com"
                   className={cn(
-                    "h-11 flex-1 rounded-md border border-ink-700 bg-ink-800 px-4 text-body text-white placeholder:text-ink-400",
+                    "h-11 flex-1 rounded-none border border-ink-700 bg-ink-800 px-4 text-body text-white placeholder:text-ink-400",
                     "transition-colors dur-base ease-out hover:border-ink-600",
                     "focus:border-accent-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
                   )}

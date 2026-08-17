@@ -18,13 +18,13 @@ export function TrustBar() {
         Why shop with Living Just Right
       </h2>
       <Container>
-        <ul className="grid list-none grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-200 bg-neutral-200 shadow-sm lg:grid-cols-4">
+        <ul className="grid list-none grid-cols-2 gap-px overflow-hidden rounded-none border border-neutral-200 bg-neutral-200 shadow-sm lg:grid-cols-4">
           {trustItems.map((item, index) => {
             const Icon = icons[item.id] ?? TruckIcon;
             return (
               <Reveal key={item.id} as="li" index={index} className="bg-white">
                 <div className="flex items-center gap-3 p-4 lg:p-5">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-md bg-accent-50 text-accent-600">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-none bg-accent-50 text-accent-600">
                     <Icon className="size-5" />
                   </span>
                   <span className="min-w-0">

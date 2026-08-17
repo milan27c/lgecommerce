@@ -2,7 +2,7 @@
 
 # Living Just Right — Project Guide
 
-Prototype e-commerce storefront selling **LG electronics only**. Korean-beauty-commerce visual language (Stylevana / YesStyle / StyleKorean / Olive Young Global) applied to a premium electronics catalogue.
+Prototype e-commerce storefront selling **LG electronics only**. Premium, minimal visual language (mrmarvis.com / spoke-london.com) applied to an electronics catalogue: black and white, sharp corners, square product photography on a light grey field, calm and editorial rather than promo-dense.
 
 **Read `SITE-PLAN.md` before building any page.** It holds the route map, the home page section order, the full LG category tree for the mega menu, and the build phases.
 
@@ -30,9 +30,9 @@ Tailwind v4 has no `tailwind.config.js`. All design tokens live in the `@theme` 
 
 - The store sells **only LG products**. Every product in the catalogue is LG.
 - The LG logo and the word "LG" may be used freely — in the nav, on cards, in copy, in banners.
-- **Do not follow LG brand guidelines.** Do not use LG red (#A50034), LG's typography, or LG's layout patterns. This site has its own identity: orange accent, deep aubergine, Korean commerce layout.
+- **Do not follow LG brand guidelines.** Do not use LG red (#A50034), LG's typography, or LG's layout patterns. This site has its own identity: black primary, dark grey secondary, sharp corners, calm minimal layout.
 - The store brand is **Living Just Right**. It is the site's own identity; LG is the product brand it stocks.
-- Placeholder logo: text only — the wordmark `Living Just Right`, "Living" in `--color-ink-900`, "Just Right" in `--color-accent-500`. No glyph, no icon lockup. Component: `components/brand/Logo.tsx`, sizes `sm | md | lg`. Swap-in ready — never hardcode the mark anywhere else.
+- Logo: image wordmark, not CSS text. Two files in `public/images/` — `logo.png` (black + red script, for light surfaces) and `logow.png` (white cutout, for dark surfaces). Source art is 2172×724 (3:1). Component: `components/brand/Logo.tsx`, sizes `sm | md | lg`, `tone="light" | "dark"` picks the file. Swap-in ready — never hardcode the mark anywhere else. Note the red in this mark is an approved exception to the "no LG red" rule in §9 — it belongs to the Living Just Right wordmark itself, not to LG.
 
 ---
 
@@ -40,58 +40,62 @@ Tailwind v4 has no `tailwind.config.js`. All design tokens live in the `@theme` 
 
 Everything below goes in the `@theme` block. **Never write a raw hex value in a component.** If a colour you need isn't here, add it to `@theme` first.
 
-### 3.1 Accent — orange (primary CTA, prices, sale, focus)
+### 3.1 Primary — black (CSS token `accent`; CTA fill, price text, focus)
+
+The code identifier is still `--color-accent-*` / `bg-accent-500` etc. — renaming it would touch every component for no visual gain. Read it as **Primary** wherever this doc says "accent."
 
 ```
---color-accent-50:  #FFF4F0
---color-accent-100: #FFE6DC
---color-accent-200: #FFC9B3
---color-accent-300: #FFA985
---color-accent-400: #FF8A5C
---color-accent-500: #FF6B35   ← brand accent
---color-accent-600: #E85420
---color-accent-700: #C24218
---color-accent-800: #993312
---color-accent-900: #7A2A10
---color-accent-950: #431407
+--color-accent-50:  #F7F7F7
+--color-accent-100: #ECECEC
+--color-accent-200: #D6D6D6
+--color-accent-300: #B0B0B0
+--color-accent-400: #808080
+--color-accent-500: #262626   ← brand primary
+--color-accent-600: #141414
+--color-accent-700: #000000
+--color-accent-800: #000000
+--color-accent-900: #000000
+--color-accent-950: #000000
 ```
 
-Usage: `500` = buttons, active states, price text, discount %. `600/700` = hover / pressed. `50/100` = tinted section backgrounds, badge fills. `900/950` = text on accent tints.
+Usage: `500` = buttons, active states, price text, focus ring. `600` = hover, `700` = active/pressed (true black — the ramp bottoms out here, so `800`–`950` repeat it for max-contrast / text-on-tint contexts). `50/100` = tinted section backgrounds, badge fills.
 
-### 3.2 Ink — deep aubergine (headings, footer, dark surfaces)
+### 3.2 Secondary — dark grey (CSS token `ink`; headings, footer, dark surfaces)
 
-```
---color-ink-50:  #F5F4F7
---color-ink-100: #E9E7EE
---color-ink-200: #CFCBD9
---color-ink-300: #ADA7BF
---color-ink-400: #837B9B
---color-ink-500: #605878
---color-ink-600: #4A4260
---color-ink-700: #37304A
---color-ink-800: #262036
---color-ink-900: #1A1625   ← brand secondary
---color-ink-950: #100D18
-```
-
-Usage: `900` = headings, footer background, dark banners, rank badges. `700/800` = dark gradient stops. `400/500` = muted body copy on light.
-
-### 3.3 Neutral — cool grey (structure)
+Same story: the code identifier stays `--color-ink-*` / `text-ink-900` etc. Read it as **Secondary**.
 
 ```
---color-neutral-50:  #F8FAFC   ← page background
---color-neutral-100: #F1F5F9   ← product image tile background
---color-neutral-200: #E2E8F0   ← borders, dividers
---color-neutral-300: #CBD5E1
---color-neutral-400: #94A3B8   ← struck-through prices, meta text
---color-neutral-500: #64748B
---color-neutral-600: #475569
---color-neutral-700: #334155
---color-neutral-800: #1E293B
---color-neutral-900: #0F172A
+--color-ink-50:  #F6F6F6
+--color-ink-100: #EAEAEA
+--color-ink-200: #D3D3D3
+--color-ink-300: #ADADAD
+--color-ink-400: #7A7A7A
+--color-ink-500: #5C5C5C
+--color-ink-600: #454545
+--color-ink-700: #333333
+--color-ink-800: #262626
+--color-ink-900: #1C1C1C   ← brand secondary
+--color-ink-950: #101010
 ```
 
-Page background is `--color-neutral-50` (#F8FAFC). Cards and the header sit on pure `#FFFFFF` so they lift off it.
+Usage: `900` = headings, footer background, dark banners. `700/800` = dark gradient stops. `400/500` = muted body copy on light. Deliberately lighter than primary's black floor (`accent-700`+), so a black button and a charcoal footer read as two distinct tones rather than one flat black.
+
+### 3.3 Neutral — true achromatic grey (structure)
+
+```
+--color-neutral-50:  #FAFAFA   ← page background
+--color-neutral-100: #F2F2F2   ← product image tile background
+--color-neutral-200: #E5E5E5   ← borders, dividers
+--color-neutral-300: #D4D4D4
+--color-neutral-400: #A3A3A3   ← struck-through prices, meta text
+--color-neutral-500: #737373
+--color-neutral-600: #525252
+--color-neutral-700: #404040
+--color-neutral-800: #262626
+--color-neutral-900: #171717
+```
+
+Page background is `--color-neutral-50` (#FAFAFA). The header sits on pure `#FFFFFF`. Product image tiles sit on `--color-neutral-100` — the "slight grey background" behind every product shot. No blue/cool tint anywhere in this ramp; it reads as pure grey, matching the black/white identity.
 
 ### 3.3a Eco — green (energy and running cost only)
 
@@ -114,24 +118,25 @@ components under it). **Nothing else on the site may use this ramp** — no eco
 buttons, cards, or headings elsewhere. `--color-eco` (§3.4) stays as-is for
 energy-rating chips on product cards.
 
-The band's ground is dark: deep teal into green into ink (`bg-eco-night`),
-with blurred teal and emerald orbs screened over it and a vignette settling the
-edges. A supporting teal ramp (`--color-teal-200 … --color-teal-950`) exists in
-`@theme` for that ground and is, like eco, **for this band only**. The heading
-over it uses `SectionHeading tone="eco-dark"`.
+The band's ground is **dark neutral**, not teal — `bg-eco-night` runs near-black
+(`ink-950`), matching the rest of the site's monochrome identity, with a few
+softly blurred orbs screened over it (mostly white/neutral glow, two small
+green ones for identity) and a vignette settling the edges. There is no teal
+ramp on this site — it was retired along with the band's old teal-night ground.
+The heading over it uses `SectionHeading tone="eco-dark"`.
 
-The white forecast card lifts out of that ground, and inside it eco carries the
-section's own furniture — both eyebrows, the CTA, the "with low energy LG" bill
-— but not everything. The load split and the upgrade chips run a mixed set
-(`--color-info` for Air Conditioners, eco for Refrigerators, ink for TVs) so the
-card never reads as a wall of green, and the usage slider runs a green → amber →
-red scale, since more consumption is worse. Mixing eco with accent, info, teal
-and ink inside this band is expected.
+The white forecast card lifts out of that ground, and inside it eco is confined
+to small accents rather than carrying the section — the eyebrow, the CTA, the
+"with low energy LG" bill highlight. The load split and the upgrade chips run a
+mixed set (`--color-info` for Air Conditioners, eco for Refrigerators, ink for
+TVs) so the card never reads as a wall of green, and the usage slider runs a
+green → amber → red scale, since more consumption is worse. Mixing eco with
+accent, info and ink inside this band is expected.
 
 Focus rings inside that band are `eco-500` rather than the site-wide `accent-500`
-(§6) — an orange ring on the mint field is the one place the standard ring reads
-as an error state. The ring colour is part of the `Button` variant map, so this
-stays a one-band exception rather than a per-call override.
+(§6) — a near-black ring is invisible against the band's own dark ground. The
+ring colour is part of the `Button` variant map, so this stays a one-band
+exception rather than a per-call override.
 
 ### 3.4 Support colours
 
@@ -151,13 +156,12 @@ Used sparingly and always with intent — never decoratively.
 Static gradients — safe anywhere:
 
 ```
---gradient-ember:  linear-gradient(135deg, #FF6B35 0%, #FF8A5C 50%, #FFA985 100%)
---gradient-dusk:   linear-gradient(135deg, #1A1625 0%, #37304A 55%, #C24218 100%)
---gradient-mist:   linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)
---gradient-tint:   linear-gradient(135deg, #FFF4F0 0%, #F1F5F9 100%)
+--gradient-dusk:   linear-gradient(135deg, #000000 0%, #262626 55%, #1C1C1C 100%)
+--gradient-mist:   linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%)
+--gradient-tint:   linear-gradient(135deg, #F7F7F7 0%, #F2F2F2 100%)
 ```
 
-Animated gradients — **maximum 2 per page**, and only on: the promo stripe, the limited-time-offer band, and one hero/feature section. Implemented by animating `background-position` on a 300% wide gradient, 14–20 s, `ease-in-out`, `infinite alternate`. Never animate `background-image` itself. Always give animated-gradient surfaces a solid fallback colour underneath.
+Home currently runs **no animated gradient** — the promo stripe and the deal-countdown band, which used to pan an orange gradient and glow with blurred orbs, are now flat black/dark-grey surfaces. That's a deliberate calming of the page, not a technical limitation: the mechanism (`background-position` panned on a 300% wide gradient, 14–20 s, `ease-in-out`, `infinite alternate`, never animating `background-image` itself, always with a solid fallback colour underneath) still exists as a pattern if a future section genuinely needs one — cap it at 2 per page if so.
 
 ### 3.6 Typography — SF Pro
 
@@ -185,23 +189,21 @@ Headings step down one level on `< md`. Negative tracking on headings is what ma
 ### 3.7 Radius, border, shadow
 
 ```
---radius-sm: 6px    --radius-md: 10px   --radius-lg: 14px
---radius-xl: 20px   --radius-2xl: 28px  --radius-full: 9999px
+--radius-full: 9999px
 ```
 
-Cards `--radius-lg`. Buttons and inputs `--radius-md`. Image tiles `--radius-lg`. Chips `--radius-full`. Hero slides and large banners `--radius-2xl`.
+**Corners are sharp everywhere** — buttons, cards, product image tiles, inputs, chips/pills, banners, hero slides. `--radius-full` is the only radius token left, and it is reserved strictly for things that are literally circular or a capsule around a single icon/digit: icon buttons, avatars, carousel dots, slider thumbs, star markers, glow-orb shapes, radio inputs. The moment something has readable text corners — a chip, a tab, a tag, a card — it's `rounded-none`, full stop.
 
 Borders are always `1px solid --color-neutral-200`, or `--color-neutral-300` on hover. No thick borders anywhere.
 
 ```
---shadow-xs:     0 1px 2px rgba(26,22,37,.04)
---shadow-sm:     0 1px 3px rgba(26,22,37,.06), 0 1px 2px rgba(26,22,37,.04)
---shadow-md:     0 4px 12px rgba(26,22,37,.06), 0 2px 4px rgba(26,22,37,.04)
---shadow-lg:     0 12px 32px rgba(26,22,37,.08), 0 4px 8px rgba(26,22,37,.04)
---shadow-accent: 0 8px 24px rgba(255,107,53,.22)
+--shadow-xs: 0 1px 2px rgba(0,0,0,.04)
+--shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04)
+--shadow-md: 0 4px 12px rgba(0,0,0,.06), 0 2px 4px rgba(0,0,0,.04)
+--shadow-lg: 0 12px 32px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.04)
 ```
 
-Shadows stay subtle. Resting cards use `--shadow-xs` or no shadow at all + a border; hover lifts to `--shadow-md`. `--shadow-lg` is reserved for the mega menu panel, modals, and the sticky header once scrolled. `--shadow-accent` only on primary CTAs.
+Shadows stay subtle. Resting cards use `--shadow-xs` or no shadow at all + a border; hover lifts to `--shadow-md`. `--shadow-lg` is reserved for the mega menu panel, modals, and the sticky header once scrolled. There is no colour-tinted "glow" shadow — primary CTAs are flat, no shadow at rest or on hover.
 
 ### 3.8 Layout
 
@@ -258,48 +260,37 @@ Reveal hooks must also check `prefers-reduced-motion` and render content visible
 
 ## 5. Product card — the canonical component
 
-Modelled on the reference screenshot, minus the brand line. `components/product/ProductCard.tsx`.
+Premium and minimal — image, name, price, nothing else. `components/product/ProductCard.tsx`.
 
 Structure, top to bottom:
 
 ```
 ┌─────────────────────────────┐
-│ [3]              ┌────────┐ │  rank badge — ink-900 square, white bold numeral,
-│                  │ 24% OFF│ │  radius-md, top-left, 8px inset. ONLY in ranked rails.
-│        product image────────┤  offer pennant — `OfferRibbon`, top-right, flush to
-│                             │  the corner. ONLY when there's an offer.
-├─────────────────────────────┤  image: square (1:1), neutral-100 background,
-│ Product name                │  radius-lg, object-contain ~12% padding, clipped.
-│ over two lines if needed    │  name: 15/22, weight 500, ink-900, 2-line clamp.
-│                             │  the whole card links to the PDP — no add-to-cart
-│ LKR 4,080  L̶K̶R̶ ̶5̶,̶4̶0̶0̶       │  affordance on the card.
-│                             │  current: ink-900, 700, price size, leads the row.
-│                             │  original: neutral-400, 400, sm, line-through.
-│ ★ 4.7 (2,043)               │  star colour-star, rest neutral-500, sm.  OPTIONAL
-│ ┌──────┐                    │
-│ │ Best │                    │  badge chip: 1px border, transparent fill, xs
-│ └──────┘                    │  uppercase. OPTIONAL
-└─────────────────────────────┘
+│                  ┌────────┐ │  offer tag — flat `OfferRibbon`, top-right,
+│                             │  flush to the corner. ONLY when there's an offer.
+│        product image        │  no rank badge, no rating, no badge chip, no
+│                             │  hover CTA — none of that lives on this card.
+└─────────────────────────────┘  image: square (1:1), neutral-100 background,
+  Product name                   sharp corners, object-contain ~12% padding.
+  over two lines if needed       name: 15/22, weight 500, ink-900, 2-line clamp.
+                                  the whole card links to the PDP.
+  LKR 4,080  L̶K̶R̶ ̶5̶,̶4̶0̶0̶         current: ink-900, 700, price size, leads the row.
+                                  original: neutral-400, 400, sm, line-through.
 ```
 
 Required fields: image, name, current price.
-Optional fields: struck original + offer pennant (only when `originalPrice` exists), rating + review count, badge, rank number, wishlist heart.
+Optional field: struck original + offer tag (only when `originalPrice` exists).
 
-Price renders on **one line** — current price first, then the struck original at `sm`. The percentage never appears in the price row: it rides the `OfferRibbon` pennant on the image. One row means offer and non-offer cards are the same height with nothing reserved, so a mixed grid still lines up.
+That's the complete field list. No rating/review count, no badge chip (Best/New/Sale/Energy), no rank number, no wishlist heart, no hover CTA button — the card is deliberately stripped to image, name and price. Anything else belongs on the PDP, not the catalogue tile.
 
-The pennant owns the top-right corner. When it's showing, the badge moves into the top-left stack under the rank badge; with no offer the badge keeps the top-right.
+Price renders on **one line** — current price first, then the struck original at `sm`. The percentage never appears in the price row: it rides the `OfferRibbon` tag on the image. One row means offer and non-offer cards are the same height with nothing reserved, so a mixed grid still lines up.
 
-Card chrome: white background, `1px --color-neutral-200` border, `--radius-lg`, no resting shadow.
+Card chrome: **none.** No border, no background, no shadow, no radius on the card itself — just the image tile and the text stacked under it, the way the reference sites (mrmarvis.com, spoke-london.com) run their product grids. Only the image tile has a fill (`--color-neutral-100`) and sharp corners.
 
 Hover (desktop only, `@media (hover: hover)`):
-- image `scale(1.04)`
-- border → `--color-neutral-300`
-- shadow → `--shadow-md`
-- card `translateY(-4px)`
+- image `scale(1.04)` — that's it.
 
-That's the whole hover state. Do not add overlays, quick-view buttons that slide in, colour swatch reveals, or secondary CTAs.
-
-Badge variants: `Best` (accent-500 border + text) · `New` (ink-900) · `Sale` (`--color-sale`) · `Energy A+++` (`--color-eco`).
+Nothing else moves. No card lift, no border appearing, no shadow, no overlay, no quick-view, no CTA sliding in. This is the whole "Apple-style" restraint the design calls for — the image responds, nothing around it does.
 
 All cards in a row must be equal height — the grid uses `items-stretch` and the card is a flex column with the name block flexed to fill.
 
@@ -317,7 +308,7 @@ components/
   brand/                Logo
   layout/               PromoStripe, Header, MegaMenu, MobileNav, Footer
   home/                 HeroCarousel, CategoryGrid, DealCountdown, …
-  product/              ProductCard, ProductGrid, ProductRail, PriceBlock, Badge
+  product/              ProductCard, ProductGrid, ProductRail, PriceBlock
   ui/                   Button, Chip, Skeleton, Section, Container, Reveal
   icons/                inline SVG
 lib/
@@ -364,14 +355,16 @@ Seed by slug so the same product keeps the same image between renders. Add the h
 - Read `SITE-PLAN.md` before starting a page, and keep the section order it specifies.
 - Build mobile-first; verify at 375, 768, 1024, 1440.
 - Reuse `ProductCard`, `Section`, `Container`, `Reveal` everywhere rather than re-implementing.
-- Keep white space generous — the Korean commerce look is dense grids inside airy sections.
+- Keep white space generous and the page calm — this is an editorial, minimal look, not a dense promo grid.
 - Prefer a border over a shadow when separating something.
 
 **Don't**
 - Don't use raw hex values, arbitrary Tailwind values (`text-[#FF6B35]`), or `!important`.
 - Don't use LG red, LG's fonts, or LG's brand layouts.
+- Don't use border radius anywhere except literal circles/capsules (`--radius-full`) — see §3.7.
 - Don't add a UI kit, animation library, state manager, or icon package without being asked.
 - Don't animate more than one property group at a time on a single element.
 - Don't add loading spinners, scroll-jacking, autoplaying audio/video, or entrance animations longer than 600ms.
+- Don't add promotional badges (Best/New/Sale/etc.), rank numbers, ratings, or hover CTAs to `ProductCard` — it's image, name, price only (§5).
 - Don't create `README`s, summary docs, or example files that weren't requested.
 - Don't ship a section that hasn't been checked at 375px wide.

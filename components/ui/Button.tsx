@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 
-export type ButtonVariant = "primary" | "ink" | "secondary" | "ghost" | "inverse" | "eco";
+export type ButtonVariant = "primary" | "ink" | "secondary" | "ghost" | "inverse" | "eco" | "outline";
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> {
@@ -22,7 +22,7 @@ const focusRing =
 const accentRing = "focus-visible:ring-accent-500";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: `bg-accent-500 text-white shadow-accent hover:bg-accent-600 active:bg-accent-700 ${accentRing}`,
+  primary: `bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-700 ${accentRing}`,
   /** Brand secondary as a fill — quiet next to primary, still a solid button. */
   ink: `bg-ink-900 text-white hover:bg-ink-800 active:bg-ink-700 ${accentRing}`,
   secondary: `bg-white text-ink-900 border border-neutral-200 hover:border-neutral-300 hover:text-accent-600 ${accentRing}`,
@@ -30,6 +30,8 @@ const variants: Record<ButtonVariant, string> = {
   inverse: `bg-white text-ink-900 hover:bg-accent-50 hover:text-accent-700 ${accentRing}`,
   /** Energy savings band only — accent orange fights the mint field it sits on. */
   eco: "bg-eco-600 text-white hover:bg-eco-700 active:bg-eco-800 focus-visible:ring-eco-500",
+  /** White outline for CTAs sitting on dark photography (e.g. hero slides). */
+  outline: "bg-transparent text-white border border-white hover:bg-white hover:text-ink-900 focus-visible:ring-white",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -49,7 +51,7 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors dur-base ease-out",
+    "inline-flex items-center justify-center gap-2 rounded-none font-medium transition-colors dur-base ease-out",
     "disabled:cursor-not-allowed disabled:opacity-50",
     focusRing,
     variants[variant],

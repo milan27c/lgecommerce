@@ -10,7 +10,7 @@ export interface CountdownTimerProps {
 
 /* Glass, not solid ink — the deals band behind it is a lit gradient. */
 const boxClass =
-  "grid min-w-14 place-items-center rounded-md border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm";
+  "grid min-w-14 place-items-center border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm";
 
 /** Only the seconds box re-renders each tick, so the row doesn't jitter. */
 export function CountdownTimer({ endsAt, className }: CountdownTimerProps) {

@@ -10,8 +10,6 @@ import { cn } from "@/lib/utils/cn";
 export interface ProductRailProps {
   products: Product[];
   label: string;
-  /** Renders the numbered rank badge from each product's `rank`. */
-  ranked?: boolean;
   /** Cards visible on large screens. */
   perView?: 4 | 5;
   /**
@@ -33,7 +31,6 @@ const widths: Record<4 | 5, string> = {
 export function ProductRail({
   products,
   label,
-  ranked = false,
   perView = 5,
   bleedRight = false,
   progress: showProgress = true,
@@ -75,9 +72,9 @@ export function ProductRail({
     <>
       {/* Scroll progress */}
       {showProgress ? (
-        <div className="mt-4 h-0.5 w-full overflow-hidden rounded-full bg-neutral-200">
+        <div className="mt-4 h-0.5 w-full overflow-hidden bg-neutral-200">
           <div
-            className="h-full w-full origin-left rounded-full bg-accent-500"
+            className="h-full w-full origin-left bg-accent-500"
             style={{ transform: `scaleX(${Math.max(0.12, progress || 0.12)})` }}
           />
         </div>
@@ -104,7 +101,7 @@ export function ProductRail({
           "no-scrollbar flex snap-x snap-mandatory list-none gap-3 overflow-x-auto scroll-smooth pb-1 lg:gap-5",
           bleedRight
             ? "rail-bleed-right"
-            : "-mx-4 px-4 scroll-pl-4 sm:mx-0 sm:px-0 sm:scroll-pl-0",
+            : "-mx-2.5 px-2.5 scroll-pl-2.5 sm:mx-0 sm:px-0 sm:scroll-pl-0",
         )}
       >
         {products.map((product) => (
@@ -114,7 +111,6 @@ export function ProductRail({
           >
             <ProductCard
               product={product}
-              rank={ranked ? product.rank : undefined}
               sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 100vw"
             />
           </li>

@@ -158,7 +158,7 @@ export default async function ProductPage({ params }: PageProps<"/p/[slug]">) {
           <ul className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-3 lg:gap-5">
             {detail.support.map((card, index) => (
               <Reveal key={card.title} as="li" index={index} className="h-full">
-                <div className="h-full rounded-lg border border-neutral-200 bg-white p-5 sm:p-6">
+                <div className="h-full rounded-none border border-neutral-200 bg-white p-5 sm:p-6">
                   <h3 className="text-body-lg font-semibold text-ink-900">{card.title}</h3>
                   <p className="mt-2 text-body text-neutral-600">{card.copy}</p>
                 </div>

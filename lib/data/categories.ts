@@ -202,59 +202,73 @@ export const categories: Category[] = [
 
 export interface CategoryTile {
   name: string;
+  /** One line, 2–3 words. */
+  subheading: string;
   slug: string;
   href: string;
   image: string;
 }
 
-/** Eight tiles for the home CategoryGrid. Names come from the tree above. */
+const newCategoryImage = (file: string) => `/images/new categories/${file}`;
+
+/**
+ * Tiles for the home CategoryGrid rail. Names come from the tree above.
+ */
 export const categoryTiles: CategoryTile[] = [
   {
     name: "TVs",
+    subheading: "4K & OLED",
     slug: "tvs",
     href: "/c/tv-audio-video/tvs",
-    image: "/images/categories/tvs.jpg",
+    image: newCategoryImage("tv.png"),
   },
   {
     name: "Home Audio",
+    subheading: "Soundbars & speakers",
     slug: "home-audio",
     href: "/c/tv-audio-video/home-audio",
-    image: "/images/categories/home-audio.webp",
+    image: newCategoryImage("audio.png"),
   },
   {
     name: "Refrigerators",
+    subheading: "Smart, spacious cooling",
     slug: "refrigerators",
     href: "/c/appliances/refrigerators",
-    image: "/images/categories/refrigerators.webp",
+    image: newCategoryImage("Refrigerators.png"),
   },
   {
     name: "Washing Machines",
+    subheading: "Effortless laundry care",
     slug: "washing-machines",
     href: "/c/appliances/washing-machines",
-    image: "/images/categories/washing-machines.avif",
+    image: newCategoryImage("washing machines.png"),
   },
   {
     name: "Air Conditioners",
+    subheading: "Fast, even cooling",
     slug: "air-conditioners",
     href: "/c/air-solutions/air-conditioners",
-    image: "/images/categories/air-conditioners.avif",
+    image: newCategoryImage("ac.png"),
   },
   {
     name: "Air Care",
+    subheading: "Cleaner indoor air",
     slug: "air-care",
     href: "/c/air-solutions/air-care",
-    image: "/images/categories/air-care.avif",
+    image: newCategoryImage("air care.png"),
   },
   {
     name: "Microwave Ovens",
+    subheading: "Quick, even heating",
     slug: "microwave-ovens",
     href: "/c/appliances/microwave-ovens",
-    image: "/images/categories/microwave-ovens.jpg",
+    image: newCategoryImage("mircowave.png"),
   },
   {
     name: "Monitors",
+    subheading: "Precision for gaming",
     slug: "monitors",
     href: "/c/computers/monitors",
-    image: "/images/categories/monitors.webp",
+    image: newCategoryImage("monitor.png"),
   },
 ];

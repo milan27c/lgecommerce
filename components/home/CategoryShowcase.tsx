@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils/cn";
 const [tall, ...stacked] = showcaseCards;
 
 const cardClass =
-  "group relative block overflow-hidden rounded-xl bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2";
+  "group relative block overflow-hidden rounded-none bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2";
 
 export function CategoryShowcase() {
   return (
@@ -20,6 +20,7 @@ export function CategoryShowcase() {
           id="category-showcase-heading"
           eyebrow="Room by room"
           title="Made for every room in your home"
+          titleClassName="text-section sm:text-section-lg"
           align="center"
         />
 

@@ -35,7 +35,7 @@ export function EnergyForecast({
 
   if (!forecast) {
     return (
-      <div className="flex min-h-90 flex-1 flex-col items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-6 py-14 text-center">
+      <div className="flex min-h-90 flex-1 flex-col items-center justify-center rounded-none border border-dashed border-neutral-300 bg-neutral-50 px-6 py-14 text-center">
         <span className="relative grid size-14 place-items-center rounded-full bg-white text-accent-600 shadow-sm">
           <span
             aria-hidden
@@ -54,7 +54,7 @@ export function EnergyForecast({
   return (
     <div className="flex flex-col gap-4">
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
+        <div className="rounded-none border border-neutral-200 bg-neutral-50 p-5">
           <p className="text-xs uppercase text-neutral-500">Your bill today</p>
           <p className="mt-2 text-h3 text-ink-900 sm:text-h2">
             <CountUp value={forecast.billNow} format={formatPrice} run={run} />
@@ -65,7 +65,7 @@ export function EnergyForecast({
         </div>
 
         {/* The one tile that earns the eco ramp — it is the lower bill. */}
-        <div className="rounded-xl border border-eco-200 bg-eco-50 p-5">
+        <div className="rounded-none border border-eco-200 bg-eco-50 p-5">
           <p className="text-xs uppercase text-eco-700">With low energy LG</p>
           <p className="mt-2 text-h3 text-eco-900 sm:text-h2">
             <CountUp value={forecast.billAfter} format={formatPrice} run={run} />
@@ -78,7 +78,7 @@ export function EnergyForecast({
 
       <p
         role="status"
-        className="flex items-start gap-3 rounded-xl bg-ink-900 px-5 py-4 text-body text-ink-100 sm:items-center"
+        className="flex items-start gap-3 rounded-none bg-ink-900 px-5 py-4 text-body text-ink-100 sm:items-center"
       >
         <span className="grid size-8 shrink-0 place-items-center rounded-full bg-eco-600 text-white">
           <TrendDownIcon className="size-4" />

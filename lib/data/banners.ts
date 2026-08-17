@@ -3,20 +3,20 @@ import type { Banner } from "./types";
 /** Source files carry spaces in their names, so the paths are encoded here. */
 export const heroBanners: Banner[] = [
   {
-    id: "oled-cricket",
-    headline: "Every match, front row",
-    copy: "LG OLED evo lights each pixel on its own, so the pitch keeps its colour and the crowd keeps its detail.",
-    cta: { label: "Shop LG TVs", href: "/c/tv-audio-video/tvs" },
-    image: "/images/hero/1.png",
-    mobileImage: "/images/hero/1%20mobile.png",
+    id: "fresh-refrigerators",
+    headline: "Freshness,\nMade Effortless",
+    cta: { label: "Shop refrigerators", href: "/c/appliances/refrigerators" },
+    image: "/images/hero/newhero1.jpg",
+    mobileImage: "/images/hero/newmobile1.png",
+    tone: "light",
   },
   {
-    id: "dualcool",
-    headline: "Cool that holds steady",
-    copy: "LG DUAL Inverter reaches temperature in half the time and stays there — quietly, and on less power.",
-    cta: { label: "Shop air conditioners", href: "/c/air-solutions/air-conditioners" },
-    image: "/images/hero/2.png",
-    mobileImage: "/images/hero/2%20mobile.png",
+    id: "together-tv",
+    headline: "Bring Everyone Together",
+    cta: { label: "Shop LG TVs", href: "/c/tv-audio-video/tvs" },
+    image: "/images/hero/newhero2.png",
+    mobileImage: "/images/hero/newmoblile2.png",
+    tone: "dark",
   },
 ];
 

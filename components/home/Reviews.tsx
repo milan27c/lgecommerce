@@ -40,16 +40,17 @@ export function Reviews() {
           id="reviews-heading"
           eyebrow="Verified buyers"
           title="What customers say"
+          titleClassName="text-section sm:text-section-lg"
           align="center"
         />
 
         <ul
           ref={scroller}
-          className="no-scrollbar -mx-4 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto px-4 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0"
+          className="no-scrollbar -mx-2.5 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto px-2.5 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0"
         >
           {reviews.map((review) => (
             <li key={review.id} className="w-full shrink-0 snap-center lg:w-auto">
-              <figure className="flex h-full flex-col gap-4 rounded-lg border border-neutral-200 bg-white p-6">
+              <figure className="flex h-full flex-col gap-4 rounded-none border border-neutral-200 bg-white p-6">
                 <div className="flex items-center gap-0.5" aria-label={`${review.rating} out of 5`}>
                   {Array.from({ length: 5 }, (_, position) => (
                     <StarIcon

@@ -83,7 +83,7 @@ export function ActiveFilters({ filters, onChange, onClear, className }: ActiveF
               type="button"
               onClick={pill.remove}
               className={cn(
-                "group inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white py-1.5 pl-3 pr-2 text-sm text-ink-900",
+                "group inline-flex items-center gap-1.5 rounded-none border border-neutral-200 bg-white py-1.5 pl-3 pr-2 text-sm text-ink-900",
                 "transition-colors dur-fast ease-out hover:border-neutral-300 hover:text-accent-600",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
               )}
@@ -99,7 +99,7 @@ export function ActiveFilters({ filters, onChange, onClear, className }: ActiveF
       <button
         type="button"
         onClick={onClear}
-        className="rounded-sm text-sm font-medium text-accent-600 transition-colors dur-fast ease-out hover:text-accent-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+        className="rounded-none text-sm font-medium text-accent-600 transition-colors dur-fast ease-out hover:text-accent-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
       >
         Clear all
       </button>

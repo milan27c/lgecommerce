@@ -16,48 +16,54 @@
     -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* ---- Accent — orange ---- */
-  --color-accent-50: #fff4f0;
-  --color-accent-100: #ffe6dc;
-  --color-accent-200: #ffc9b3;
-  --color-accent-300: #ffa985;
-  --color-accent-400: #ff8a5c;
-  --color-accent-500: #ff6b35;
-  --color-accent-600: #e85420;
-  --color-accent-700: #c24218;
-  --color-accent-800: #993312;
-  --color-accent-900: #7a2a10;
-  --color-accent-950: #431407;
+  /* ---- Primary — black (CTA fill, price text, focus ring) ----
+     Ramp bottoms out at true black: there is nowhere darker than 700, so
+     800–950 repeat it for text-on-tint / max-contrast contexts. */
+  --color-accent-50: #f7f7f7;
+  --color-accent-100: #ececec;
+  --color-accent-200: #d6d6d6;
+  --color-accent-300: #b0b0b0;
+  --color-accent-400: #808080;
+  --color-accent-500: #262626;
+  --color-accent-600: #141414;
+  --color-accent-700: #000000;
+  --color-accent-800: #000000;
+  --color-accent-900: #000000;
+  --color-accent-950: #000000;
 
-  /* ---- Ink — deep aubergine ---- */
-  --color-ink-50: #f5f4f7;
-  --color-ink-100: #e9e7ee;
-  --color-ink-200: #cfcbd9;
-  --color-ink-300: #ada7bf;
-  --color-ink-400: #837b9b;
-  --color-ink-500: #605878;
-  --color-ink-600: #4a4260;
-  --color-ink-700: #37304a;
-  --color-ink-800: #262036;
-  --color-ink-900: #1a1625;
-  --color-ink-950: #100d18;
+  /* ---- Secondary — dark gray (headings, footer, dark surfaces) ----
+     Deliberately lighter than primary's black floor, so charcoal surfaces
+     (footer, dark banners) read as a distinct tone from a black button. */
+  --color-ink-50: #f6f6f6;
+  --color-ink-100: #eaeaea;
+  --color-ink-200: #d3d3d3;
+  --color-ink-300: #adadad;
+  --color-ink-400: #7a7a7a;
+  --color-ink-500: #5c5c5c;
+  --color-ink-600: #454545;
+  --color-ink-700: #333333;
+  --color-ink-800: #262626;
+  --color-ink-900: #1c1c1c;
+  --color-ink-950: #101010;
 
-  /* ---- Neutral — cool grey ---- */
-  --color-neutral-50: #f8fafc;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-400: #94a3b8;
-  --color-neutral-500: #64748b;
-  --color-neutral-600: #475569;
-  --color-neutral-700: #334155;
-  --color-neutral-800: #1e293b;
-  --color-neutral-900: #0f172a;
+  /* ---- Neutral — true achromatic grey ---- */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f2f2f2;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
 
   /* ---- Eco — green (energy + running-cost surfaces only) ----
-     Deliberately outside the accent/ink identity. The savings forecast is the
-     one place the site talks about power rather than product, and it reads as
-     its own idea. Nothing else on the site may use this ramp. */
+     Deliberately outside the primary/secondary identity. The savings forecast
+     is the one place the site talks about power rather than product. Confined
+     to small accents there — chips, the CTA, the usage slider, leaf motes —
+     never the band's own ground, which runs dark neutral like the rest of the
+     site. Nothing else on the site may use this ramp. */
   --color-eco-50: #ecfdf5;
   --color-eco-100: #d1fae5;
   --color-eco-200: #a7f3d0;
@@ -70,17 +76,6 @@
   --color-eco-900: #064e3b;
   --color-eco-950: #022c22;
 
-  /* ---- Teal — the energy band's night sky (see §3.3a) ----
-     Only the savings forecast band uses these, alongside the eco ramp: the
-     band's ground is deep teal, the glow above it is teal and emerald. */
-  --color-teal-200: #99f6e4;
-  --color-teal-300: #5eead4;
-  --color-teal-400: #2dd4bf;
-  --color-teal-500: #14b8a6;
-  --color-teal-700: #0f766e;
-  --color-teal-900: #134e4a;
-  --color-teal-950: #042f2e;
-
   /* ---- Support colours ---- */
   --color-sale: #e11d48;
   --color-success: #16a34a;
@@ -90,20 +85,9 @@
   --color-star: #fbbf24;
 
   /* ---- Gradients ---- */
-  --gradient-ember: linear-gradient(135deg, #ff6b35 0%, #ff8a5c 50%, #ffa985 100%);
-  --gradient-dusk: linear-gradient(135deg, #1a1625 0%, #37304a 55%, #c24218 100%);
-  --gradient-mist: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  --gradient-tint: linear-gradient(135deg, #fff4f0 0%, #f1f5f9 100%);
-  /* Deals label. Stops mirror around the centre so an alternating pan never
-     jumps — teal-700 · teal-500 · eco-500 · teal-500 · teal-700. */
-  --gradient-deal: linear-gradient(
-    90deg,
-    #0f766e 0%,
-    #14b8a6 25%,
-    #10b981 50%,
-    #14b8a6 75%,
-    #0f766e 100%
-  );
+  --gradient-dusk: linear-gradient(135deg, #000000 0%, #262626 55%, #1c1c1c 100%);
+  --gradient-mist: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  --gradient-tint: linear-gradient(135deg, #f7f7f7 0%, #f2f2f2 100%);
 
   /* ---- Type scale (size / line-height / weight / tracking) ---- */
   --text-display: 56px;
@@ -125,6 +109,18 @@
   --text-h3--line-height: 28px;
   --text-h3--font-weight: 600;
   --text-h3--letter-spacing: -0.015em;
+
+  /* Home page section headings — same footprint as h2/h1 but lighter, for the
+     editorial rail sections (CategoryGrid and its siblings below it). */
+  --text-section: 30px;
+  --text-section--line-height: 36px;
+  --text-section--font-weight: 600;
+  --text-section--letter-spacing: -0.02em;
+
+  --text-section-lg: 40px;
+  --text-section-lg--line-height: 46px;
+  --text-section-lg--font-weight: 600;
+  --text-section-lg--letter-spacing: -0.025em;
 
   --text-body-lg: 17px;
   --text-body-lg--line-height: 26px;
@@ -151,20 +147,17 @@
   --text-price--font-weight: 700;
   --text-price--letter-spacing: -0.02em;
 
-  /* ---- Radius ---- */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-2xl: 28px;
+  /* ---- Radius ----
+     Corners are sharp everywhere. --radius-full is reserved strictly for
+     literal circles and capsules — icon buttons, avatars, dots, slider
+     thumbs, orb/glow shapes. Nothing else uses a radius token. */
   --radius-full: 9999px;
 
   /* ---- Shadow ---- */
-  --shadow-xs: 0 1px 2px rgba(26, 22, 37, 0.04);
-  --shadow-sm: 0 1px 3px rgba(26, 22, 37, 0.06), 0 1px 2px rgba(26, 22, 37, 0.04);
-  --shadow-md: 0 4px 12px rgba(26, 22, 37, 0.06), 0 2px 4px rgba(26, 22, 37, 0.04);
-  --shadow-lg: 0 12px 32px rgba(26, 22, 37, 0.08), 0 4px 8px rgba(26, 22, 37, 0.04);
-  --shadow-accent: 0 8px 24px rgba(255, 107, 53, 0.22);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
 
   /* ---- Layout ---- */
   --container-site: 1280px;
@@ -184,13 +177,10 @@
   --dur-slow: 420ms;
   --dur-hero: 600ms;
 
-  --animate-gradient-pan: gradient-pan 18s var(--ease-std) infinite alternate;
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-ken-burns: ken-burns 6000ms var(--ease-out) both;
   --animate-dot-progress: dot-progress 6000ms linear both;
   --animate-fade-in: fade-in 240ms var(--ease-out) both;
-  /* Drifts the Deals gradient text. Short travel, so 6s reads as a slow shift. */
-  --animate-deal-pan: gradient-pan 6s var(--ease-std) infinite alternate;
   /* Four identical copies in the track, so one step is a quarter of it. */
   --animate-marquee: marquee 45s linear infinite;
 
@@ -211,15 +201,6 @@
      opacity, at the pace of the shimmer already used by Skeleton. The beam is
      a quarter of the panel tall, so the travel below is in its own units. */
   --animate-scan-sweep: scan-sweep 1.6s var(--ease-std) infinite;
-
-  @keyframes gradient-pan {
-    from {
-      background-position: 0% 50%;
-    }
-    to {
-      background-position: 100% 50%;
-    }
-  }
 
   @keyframes shimmer {
     from {
@@ -358,60 +339,27 @@
    Utilities — so components never need arbitrary values
    ========================================================================= */
 
-@utility bg-ember {
-  background-color: var(--color-accent-500);
-  background-image: var(--gradient-ember);
-}
-
 @utility bg-dusk {
   background-color: var(--color-ink-900);
   background-image: var(--gradient-dusk);
 }
 
-/* Deals band. Static layered radials over an ink ground — accent orange
-   glow at the edges, deep ink/aubergine in the middle, so the white cards
-   sit in a lit pocket. Orange-on-ink keeps this band on-brand and distinct
-   from the Energy band's teal-night ground, which owns the eco ramp. No
-   animation: the only animated gradient on Home is the promo stripe. */
-@utility bg-deal-aurora {
-  background-color: var(--color-ink-900);
-  background-image:
-    radial-gradient(72% 96% at 6% -8%, rgba(255, 107, 53, 0.32) 0%, rgba(255, 107, 53, 0) 62%),
-    radial-gradient(58% 82% at 96% 6%, rgba(255, 138, 92, 0.26) 0%, rgba(255, 138, 92, 0) 64%),
-    radial-gradient(70% 78% at 46% 112%, rgba(194, 66, 24, 0.45) 0%, rgba(194, 66, 24, 0) 70%),
-    radial-gradient(46% 62% at 80% 84%, rgba(96, 88, 120, 0.5) 0%, rgba(96, 88, 120, 0) 72%),
-    linear-gradient(135deg, #1a1625 0%, #262036 55%, #431407 100%);
-}
-
-/* Fine dot field over the aurora. Masked so it fades out before the edges. */
-@utility bg-dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(60% 70% at 50% 34%, #000 0%, transparent 100%);
-}
-
 /* =========================================================================
    Energy savings band — components/home/EnergySavings
-   A deep teal-to-green night ground under heavily blurred orbs of teal and
-   emerald, screened over it so they read as glow rather than as paint. All of
-   the motion here is transform + opacity, so the band adds nothing to the
-   promo stripe's animated-gradient budget.
+   Muted to fit the site's monochrome identity: a dark-neutral ground (not
+   teal) under a couple of restrained, low-opacity orbs. Green survives only
+   as a small accent — chips, the CTA, the usage slider, the leaf motes. All
+   of the motion here is transform + opacity.
    ========================================================================= */
 
 /* The ground. Solid colour first, so the band is never bare while the gradient
-   paints. Teal at the head, green through the middle, ink at the foot — the
-   white forecast card sits in the lit part of it. */
+   paints. Near-black throughout, with the faintest lift at the top so the
+   white forecast card still sits in a (very) slightly lit pocket. */
 @utility bg-eco-night {
-  background-color: var(--color-eco-950);
+  background-color: var(--color-ink-950);
   background-image:
-    radial-gradient(78% 60% at 50% 0%, rgba(20, 184, 166, 0.28) 0%, rgba(20, 184, 166, 0) 70%),
-    linear-gradient(
-      168deg,
-      var(--color-teal-950) 0%,
-      var(--color-eco-950) 42%,
-      #05201c 74%,
-      var(--color-ink-950) 100%
-    );
+    radial-gradient(78% 60% at 50% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(168deg, var(--color-ink-950) 0%, #0a0a0a 50%, var(--color-ink-950) 100%);
 }
 
 /* Settles the edges, so the glow reads as depth rather than as four corners
@@ -419,9 +367,9 @@
 @utility bg-eco-vignette {
   background-image: radial-gradient(
     72% 64% at 50% 44%,
-    rgba(2, 44, 34, 0) 0%,
-    rgba(2, 44, 34, 0.34) 62%,
-    rgba(4, 6, 12, 0.6) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 62%,
+    rgba(0, 0, 0, 0.6) 100%
   );
 }
 
@@ -446,7 +394,7 @@
 /* Drifting leaf. Negative delays start the field mid-flight so it is already
    populated on the first frame instead of filling in over half a minute. */
 @utility eco-mote {
-  color: var(--color-teal-300);
+  color: var(--color-eco-400);
   opacity: 0;
   animation: var(--animate-eco-rise);
   will-change: transform;
@@ -548,27 +496,6 @@
   }
 }
 
-/* Discount pennant on the deal cards — notched bottom edge (reference ribbon). */
-@utility ribbon-notch {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 7px), 0 100%);
-}
-
-/* The pennant's raised face: a vertical bevel, a lit top edge and a shaded
-   underside, so it reads as a physical tag sitting on the shot. */
-@utility ribbon-face {
-  background-image: linear-gradient(180deg, #ff8a5c 0%, #ff6b35 44%, #e85420 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 1px 0 0 rgba(255, 255, 255, 0.22),
-    inset 0 -10px 14px -9px rgba(67, 20, 7, 0.65);
-}
-
-/* Cast shadow for the pennant. `drop-shadow` traces the clipped notch, which a
-   box-shadow on the clipped element itself cannot do. */
-@utility ribbon-lift {
-  filter: drop-shadow(0 5px 8px rgba(26, 22, 37, 0.3)) drop-shadow(0 1px 1px rgba(26, 22, 37, 0.22));
-}
-
 /* Right-bleeding rail track. Its left edge lines up with the container gutter
    and it runs to the viewport's right edge, so the next card is cut by the
    screen rather than by a margin. The percentage resolves against the parent's
@@ -579,18 +506,32 @@
    snapping parks the first card against the scrollport edge, scrolling the
    gutter out of sight. */
 @utility rail-bleed-right {
-  --rail-gutter: 1rem;
+  --rail-gutter: 0.625rem;
   padding-left: var(--rail-gutter);
   padding-right: var(--rail-gutter);
   scroll-padding-left: var(--rail-gutter);
 
   @media (width >= 40rem) {
-    --rail-gutter: 1.5rem;
+    --rail-gutter: 0.875rem;
   }
 
   @media (width >= 64rem) {
-    --rail-gutter: max(2rem, calc((100% - var(--container-site)) / 2 + 2rem));
+    --rail-gutter: max(0.75rem, calc((100% - var(--container-site)) / 2 + 0.75rem));
     padding-right: 0;
+  }
+}
+
+/* Category rail card — sized so ~5.5 sit in view at once on desktop; the rest
+   is reached by scrolling, not paging (CLAUDE.md CategoryGrid). */
+@utility category-card {
+  width: 74vw;
+
+  @media (width >= 40rem) {
+    width: 41vw;
+  }
+
+  @media (width >= 64rem) {
+    width: calc((var(--container-site) - 4 * 1rem) / 5.5 * 1.2);
   }
 }
 
@@ -602,23 +543,6 @@
 @utility bg-tint {
   background-color: var(--color-accent-50);
   background-image: var(--gradient-tint);
-}
-
-/* Gradient-filled label — no background fill, the glyphs carry the colour.
-   Pairs with animate-deal-pan; the wide background is what the pan travels. */
-@utility text-deal {
-  background-image: var(--gradient-deal);
-  background-size: 220% 100%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: var(--color-teal-700);
-  -webkit-text-fill-color: transparent;
-}
-
-/* Pairs with animate-gradient-pan. Always sits on a solid fallback above. */
-@utility bg-pan {
-  background-size: 300% 300%;
 }
 
 /* Promo stripe marquee — edges dissolve instead of clipping mid-word. */
@@ -773,8 +697,8 @@
 @utility glow-accent {
   background-image: radial-gradient(
     60% 80% at 50% 0%,
-    rgba(255, 107, 53, 0.28) 0%,
-    rgba(255, 107, 53, 0) 70%
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 70%
   );
 }
 

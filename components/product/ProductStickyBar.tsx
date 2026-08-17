@@ -99,7 +99,7 @@ export function ProductStickyBar({ name, price, sections, className }: ProductSt
               <span
                 aria-hidden
                 className={cn(
-                  "absolute inset-x-0 bottom-0 h-0.5 origin-left rounded-full bg-accent-500",
+                  "absolute inset-x-0 bottom-0 h-0.5 origin-left bg-accent-500",
                   "transition-transform dur-base ease-out",
                   active === section.id ? "scale-x-100" : "scale-x-0",
                 )}

@@ -17,11 +17,10 @@ export interface DealCardProps {
 const DEFAULT_SIZES = "(min-width: 1024px) 22vw, (min-width: 640px) 33vw, 45vw";
 
 /**
- * The deals-band variant of the canonical card. Differences from ProductCard,
- * all scoped to this band: the tile is full-bleed with no grey backing, the
- * discount rides a raised pennant in the top-right of the image, and the
- * rating and badge rows are dropped so the price carries the card.
- * Hover behaves exactly like ProductCard — image scale, lift, border, shadow.
+ * The deals-band variant of the canonical card. Sits on the dark deal band,
+ * so it keeps a plain white ground for legibility, but is otherwise the same
+ * language as ProductCard — square grey image tile, name, price, nothing
+ * else. Hover moves only the image.
  */
 export function DealCard({ product, sizes, className }: DealCardProps) {
   const discount = product.originalPrice
@@ -30,21 +29,14 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
   const hasOffer = Boolean(product.originalPrice) && discount > 0;
 
   return (
-    <article
-      className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white",
-        "transition-[transform,border-color,box-shadow] dur-base ease-out",
-        "hover:-translate-y-1 hover:border-neutral-300 hover:shadow-md",
-        className,
-      )}
-    >
-      <div className="relative aspect-card w-full overflow-hidden">
+    <article className={cn("group relative flex h-full flex-col bg-white", className)}>
+      <div className="relative aspect-square w-full overflow-hidden bg-neutral-100">
         <Image
           src={product.image}
           alt={product.name}
           fill
           sizes={sizes ?? DEFAULT_SIZES}
-          className="p-tile-deal object-contain transition-transform dur-slow ease-out group-hover:scale-104"
+          className="p-tile object-contain transition-transform dur-slow ease-out group-hover:scale-104"
         />
 
         {hasOffer ? (
@@ -52,11 +44,11 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-1.5 border-t border-neutral-100 p-3">
+      <div className="flex flex-1 flex-col gap-1.5 p-3">
         <h3 className="line-clamp-2 flex-1 text-body font-medium text-ink-900">
           <Link
             href={productHref(product)}
-            className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="rounded-none after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             {product.name}
           </Link>

@@ -41,7 +41,7 @@ export function FeatureTiles({ tiles, size = "lg", className }: FeatureTilesProp
     >
       {tiles.map((tile, index) => (
         <Reveal key={tile.label} as="li" index={index} className="h-full">
-          <div className="flex h-full flex-col justify-between rounded-lg border border-neutral-200 bg-white p-4 text-center">
+          <div className="flex h-full flex-col justify-between rounded-none border border-neutral-200 bg-white p-4 text-center">
             <p className="text-xs uppercase text-neutral-500">{tile.label}</p>
             <p
               className={cn(

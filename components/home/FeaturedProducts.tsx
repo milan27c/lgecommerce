@@ -26,6 +26,7 @@ export function FeaturedProducts() {
           id="featured-products-heading"
           eyebrow="Featured products"
           title="The month's standouts"
+          titleClassName="text-section sm:text-section-lg"
           link={{ label: "View all", href: "/best-sellers" }}
           align="center-mobile"
         />
@@ -47,7 +48,7 @@ export function FeaturedProducts() {
                 aria-controls={`featured-panel-${tab.id}`}
                 onClick={() => setActive(tab.id)}
                 className={cn(
-                  "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors dur-base ease-out",
+                  "shrink-0 rounded-none border px-4 py-2 text-sm font-medium transition-colors dur-base ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                   selected
                     ? "border-accent-500 bg-accent-500 text-white"

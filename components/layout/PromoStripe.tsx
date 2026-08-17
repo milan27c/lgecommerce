@@ -11,14 +11,13 @@ import { cn } from "@/lib/utils/cn";
  */
 const REPEATS = 4;
 
-/** Animated gradient #1 of the two allowed per page. */
 export function PromoStripe() {
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) return null;
 
   return (
-    <div className="relative h-9 overflow-hidden bg-ember bg-pan animate-gradient-pan">
+    <div className="relative h-9 overflow-hidden bg-ink-900">
       <div className="marquee-mask h-full overflow-hidden">
         <div className="marquee-hold flex h-full w-max animate-marquee items-center will-change-transform">
           {Array.from({ length: REPEATS }, (_, copy) => (

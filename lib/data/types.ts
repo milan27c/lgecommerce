@@ -56,10 +56,11 @@ export interface Product {
 export interface Banner {
   id: string;
   headline: string;
-  copy: string;
   cta: { label: string; href: string };
   image: string;
   mobileImage?: string;
+  /** Text/button treatment for the artwork behind it. Defaults to "dark". */
+  tone?: "light" | "dark";
 }
 
 export interface Deal {

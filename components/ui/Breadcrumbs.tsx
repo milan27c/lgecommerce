@@ -28,7 +28,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="rounded-sm text-sm text-neutral-500 transition-colors dur-fast ease-out hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+                      className="rounded-none text-sm text-neutral-500 transition-colors dur-fast ease-out hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
                     >
                       {item.label}
                     </Link>

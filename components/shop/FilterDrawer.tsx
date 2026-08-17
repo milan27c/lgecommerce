@@ -64,7 +64,7 @@ export function FilterDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close filters"
-            className="grid size-9 place-items-center rounded-md text-neutral-500 transition-colors dur-fast ease-out hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+            className="grid size-9 place-items-center rounded-none text-neutral-500 transition-colors dur-fast ease-out hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
           >
             <CloseIcon className="size-5" />
           </button>
@@ -78,14 +78,14 @@ export function FilterDrawer({
           <button
             type="button"
             onClick={onClear}
-            className="h-11 rounded-md border border-neutral-200 px-4 text-body font-medium text-ink-900 transition-colors dur-fast ease-out hover:border-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="h-11 rounded-none border border-neutral-200 px-4 text-body font-medium text-ink-900 transition-colors dur-fast ease-out hover:border-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             Clear all
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="h-11 flex-1 rounded-md bg-accent-500 px-4 text-body font-medium text-white shadow-accent transition-colors dur-fast ease-out hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="h-11 flex-1 rounded-none bg-accent-500 px-4 text-body font-medium text-white transition-colors dur-fast ease-out hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             Show {resultCount} {resultCount === 1 ? "product" : "products"}
           </button>

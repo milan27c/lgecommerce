@@ -12,6 +12,7 @@ export function NewArrivals() {
           id="new-arrivals-heading"
           eyebrow="Just landed"
           title="New arrivals"
+          titleClassName="text-section sm:text-section-lg"
           link={{ label: "View all", href: "/new-arrivals" }}
           align="center-mobile"
         />

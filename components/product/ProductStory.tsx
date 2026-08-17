@@ -68,7 +68,7 @@ export function ProductStory({ block, className }: ProductStoryProps) {
       {heading}
       <Reveal
         index={1}
-        className={cn("relative mt-8 w-full overflow-hidden rounded-2xl sm:mt-10", ratio)}
+        className={cn("relative mt-8 w-full overflow-hidden rounded-none sm:mt-10", ratio)}
       >
         <Image src={block.image} alt={block.alt} fill sizes="100vw" className="object-cover" />
       </Reveal>

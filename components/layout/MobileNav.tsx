@@ -64,7 +64,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="grid size-9 place-items-center rounded-md text-neutral-500 transition-colors dur-fast ease-out hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+            className="grid size-9 place-items-center rounded-full text-neutral-500 transition-colors dur-fast ease-out hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
           >
             <CloseIcon className="size-5" />
           </button>
@@ -159,14 +159,11 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                     onClick={onClose}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "block rounded-md py-2.5 text-body font-medium dur-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
+                      "block py-2.5 text-body font-medium dur-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
                       active && "bg-neutral-100",
-                      // Same gradient label the header uses.
-                      item.href === "/deals"
-                        ? cn("w-fit text-deal animate-deal-pan", active && "font-semibold")
-                        : active
-                          ? "font-semibold text-accent-600"
-                          : "text-ink-900 transition-colors hover:text-accent-600",
+                      active
+                        ? "font-semibold text-accent-600"
+                        : "text-ink-900 transition-colors hover:text-accent-600",
                     )}
                   >
                     {item.label}

@@ -63,7 +63,7 @@ export function FilterPanel({
             <button
               type="button"
               onClick={onClear}
-              className="rounded-sm text-sm font-medium text-accent-600 transition-colors dur-fast ease-out hover:text-accent-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+              className="rounded-none text-sm font-medium text-accent-600 transition-colors dur-fast ease-out hover:text-accent-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
             >
               Clear all
             </button>

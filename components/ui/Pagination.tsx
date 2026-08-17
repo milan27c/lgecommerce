@@ -26,7 +26,7 @@ function pageItems(page: number, pageCount: number): (number | "gap")[] {
 }
 
 const cell =
-  "grid h-10 min-w-10 place-items-center rounded-md border px-3 text-body transition-colors dur-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2";
+  "grid h-10 min-w-10 place-items-center rounded-none border px-3 text-body transition-colors dur-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2";
 
 export function Pagination({ page, pageCount, onChange, className }: PaginationProps) {
   if (pageCount <= 1) return null;

@@ -29,14 +29,14 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
-        <p className="flex-1 rounded-md border border-neutral-200 bg-white px-3 py-2 text-right text-sm tabular-nums text-ink-900">
+        <p className="flex-1 rounded-none border border-neutral-200 bg-white px-3 py-2 text-right text-sm tabular-nums text-ink-900">
           <span className="sr-only">Minimum price </span>
           {low.toLocaleString("en-US")}
         </p>
         <span aria-hidden className="text-sm text-neutral-400">
           —
         </span>
-        <p className="flex-1 rounded-md border border-neutral-200 bg-white px-3 py-2 text-right text-sm tabular-nums text-ink-900">
+        <p className="flex-1 rounded-none border border-neutral-200 bg-white px-3 py-2 text-right text-sm tabular-nums text-ink-900">
           <span className="sr-only">Maximum price </span>
           {high.toLocaleString("en-US")}
         </p>
@@ -46,11 +46,11 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
       <div className="relative h-5">
         <span
           aria-hidden
-          className="absolute inset-x-2 top-1/2 h-1 -translate-y-1/2 rounded-full bg-neutral-200"
+          className="absolute inset-x-2 top-1/2 h-1 -translate-y-1/2 bg-neutral-200"
         />
         <span
           aria-hidden
-          className="absolute inset-x-2 top-1/2 h-1 origin-left rounded-full bg-accent-500"
+          className="absolute inset-x-2 top-1/2 h-1 origin-left bg-accent-500"
           style={{
             transform: `translateY(-50%) translateX(${lowPercent}%) scaleX(${
               (highPercent - lowPercent) / 100
@@ -90,7 +90,7 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
                 aria-pressed={active}
                 onClick={() => onChange(active ? [MIN, MAX] : preset.range)}
                 className={cn(
-                  "rounded-full border px-3 py-1.5 text-sm transition-colors dur-fast ease-out",
+                  "rounded-none border px-3 py-1.5 text-sm transition-colors dur-fast ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                   active
                     ? "border-accent-500 bg-accent-50 text-accent-700"

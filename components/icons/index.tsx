@@ -271,3 +271,20 @@ export function YoutubeIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function PlayIcon(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M8 6.5v11l9-5.5Z" />
+    </svg>
+  );
+}
+
+export function PauseIcon(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <rect x="7" y="6" width="3.4" height="12" />
+      <rect x="13.6" y="6" width="3.4" height="12" />
+    </svg>
+  );
+}

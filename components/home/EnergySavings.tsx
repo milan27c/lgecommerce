@@ -25,9 +25,10 @@ function reducedMotion() {
 }
 
 /**
- * Household savings forecast. The band sits on a deep teal-to-green night
- * ground with blurred orbs drifting and swelling over it, and the white
- * forecast card lifts out of the middle of it. Green marks the section itself —
+ * Household savings forecast. The band sits on a dark-neutral night ground
+ * with blurred orbs drifting and swelling over it — mostly soft white glow,
+ * with two small green orbs for identity — and the white forecast card lifts
+ * out of the middle of it. Green marks the section itself in small doses —
  * eyebrows, the CTA, the lower bill — while the load split and the upgrade
  * chips run a mixed set (blue, green, ink) so the card never reads as one flat
  * wall of green. The usage scale runs green to red, so where the thumb sits
@@ -108,11 +109,11 @@ export function EnergySavings() {
       {/* The ground is repeated on this layer rather than left to the section,
           so the orbs above it screen against it inside one stacking context. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-eco-night">
-        <span className="eco-orb animate-eco-drift-a absolute -left-32 -top-40 size-120 bg-teal-500 mix-blend-screen" />
-        <span className="eco-orb animate-eco-breathe-a absolute -right-40 top-0 size-120 bg-eco-500 mix-blend-screen" />
-        <span className="eco-orb animate-eco-drift-b absolute -bottom-40 left-1/4 size-104 bg-teal-400 mix-blend-screen" />
-        <span className="eco-orb-sm animate-eco-drift-c absolute -bottom-24 right-1/5 size-80 bg-eco-400 mix-blend-screen" />
-        <span className="eco-orb-sm animate-eco-breathe-b absolute left-1/2 top-1/3 size-72 bg-teal-300 mix-blend-screen" />
+        <span className="eco-orb animate-eco-drift-a absolute -left-32 -top-40 size-120 bg-white/10 mix-blend-screen" />
+        <span className="eco-orb animate-eco-breathe-a absolute -right-40 top-0 size-120 bg-eco-600 mix-blend-screen" />
+        <span className="eco-orb animate-eco-drift-b absolute -bottom-40 left-1/4 size-104 bg-white/10 mix-blend-screen" />
+        <span className="eco-orb-sm animate-eco-drift-c absolute -bottom-24 right-1/5 size-80 bg-eco-500 mix-blend-screen" />
+        <span className="eco-orb-sm animate-eco-breathe-b absolute left-1/2 top-1/3 size-72 bg-white/10 mix-blend-screen" />
 
         <LeafIcon className="eco-mote eco-mote-a absolute bottom-24 left-8 size-5 lg:left-24" />
         <LeafIcon className="eco-mote eco-mote-b absolute bottom-16 left-1/3 size-4" />
@@ -127,12 +128,13 @@ export function EnergySavings() {
           id="energy-savings-heading"
           eyebrow="Energy savings"
           title="See what LG efficiency saves you"
+          titleClassName="text-section sm:text-section-lg"
           copy="Tell us roughly what you use in a month and we will forecast what moving to the low energy LG lineup does to the bill."
           align="center"
           tone="eco-dark"
         />
 
-        <Reveal className="overflow-hidden rounded-2xl border border-white/12 bg-white shadow-lg">
+        <Reveal className="overflow-hidden rounded-none border border-white/12 bg-white shadow-lg">
           <div className="grid lg:grid-cols-5">
             <form
               onSubmit={onSubmit}
@@ -160,7 +162,7 @@ export function EnergySavings() {
                   onChange={onType}
                   onBlur={onBlur}
                   className={cn(
-                    "h-14 w-32 rounded-md border border-neutral-200 bg-neutral-50 px-4 text-h3 tabular-nums text-ink-900",
+                    "h-14 w-32 rounded-none border border-neutral-200 bg-neutral-50 px-4 text-h3 tabular-nums text-ink-900",
                     "dur-base ease-out transition-colors hover:border-neutral-300",
                     "focus:border-eco-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 focus-visible:ring-offset-2",
                   )}
@@ -171,7 +173,7 @@ export function EnergySavings() {
               <div className="relative mt-6 flex h-6 items-center">
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 h-1.5 overflow-hidden rounded-full bg-neutral-200"
+                  className="absolute inset-x-0 h-1.5 overflow-hidden bg-neutral-200"
                 >
                   {/* Dynamic transform rather than a width, so the fill never
                       animates a geometric property. The inner span counter-

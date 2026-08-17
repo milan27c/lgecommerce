@@ -17,7 +17,7 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
 
   return (
     <Reveal as="li" index={index}>
-      <div className="group relative aspect-hero-mobile overflow-hidden rounded-2xl bg-neutral-100 transition-transform dur-base ease-out hover:-translate-y-1 md:aspect-video">
+      <div className="group relative aspect-hero-mobile overflow-hidden rounded-none bg-neutral-100 transition-transform dur-base ease-out hover:-translate-y-1 md:aspect-video">
         {/* Background only — never text, never product images. */}
         <div
           ref={ref}
@@ -49,7 +49,7 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
           <h3 className="text-h3 text-white">
             <Link
               href={banner.href}
-              className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+              className="rounded-none after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
             >
               {banner.title}
             </Link>
