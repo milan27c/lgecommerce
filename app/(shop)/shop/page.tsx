@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ShopCatalog } from "@/components/shop/ShopCatalog";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
+import type { OfferKey } from "@/lib/data/catalog";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -10,7 +11,14 @@ export const metadata: Metadata = {
     "The full Living Just Right catalogue of LG electronics — TVs, appliances, air solutions and monitors. Filter by category, price, rating and availability.",
 };
 
-export default function ShopPage() {
+const isOfferKey = (value: string | undefined): value is OfferKey =>
+  value === "sale" || value === "new" || value === "best";
+
+export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
+  const params = await searchParams;
+  const offerParam = Array.isArray(params.offer) ? params.offer[0] : params.offer;
+  const initialOffer = isOfferKey(offerParam) ? offerParam : undefined;
+
   return (
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
@@ -37,7 +45,7 @@ export default function ShopPage() {
         </Container>
       </div>
 
-      <ShopCatalog />
+      <ShopCatalog initialOffer={initialOffer} />
     </>
   );
 }

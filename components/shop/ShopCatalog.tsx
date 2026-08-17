@@ -8,7 +8,7 @@ import { FilterDrawer } from "@/components/shop/FilterDrawer";
 import { FilterPanel } from "@/components/shop/FilterPanel";
 import { Container } from "@/components/ui/Container";
 import { Pagination } from "@/components/ui/Pagination";
-import { categoryFacets, PAGE_SIZE } from "@/lib/data/catalog";
+import { categoryFacets, PAGE_SIZE, type OfferKey } from "@/lib/data/catalog";
 import { products } from "@/lib/data/products";
 import { cn } from "@/lib/utils/cn";
 import {
@@ -24,8 +24,15 @@ import {
 
 const CARD_SIZES = "(min-width: 1280px) 20vw, (min-width: 640px) 30vw, 90vw";
 
-export function ShopCatalog() {
-  const [filters, setFilters] = useState<CatalogFilters>(defaultFilters);
+export interface ShopCatalogProps {
+  /** Pre-applies the matching offer facet, e.g. arriving from "New Arrivals" or "Best Sellers" in the nav. */
+  initialOffer?: OfferKey;
+}
+
+export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
+  const [filters, setFilters] = useState<CatalogFilters>(() =>
+    initialOffer ? { ...defaultFilters, offers: [initialOffer] } : defaultFilters,
+  );
   const [sort, setSort] = useState<SortKey>("featured");
   const [page, setPage] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);

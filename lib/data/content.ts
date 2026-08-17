@@ -201,7 +201,7 @@ export const primaryNav = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
   { label: "Deals", href: "/deals" },
-  { label: "New Arrivals", href: "/new-arrivals" },
-  { label: "Best Sellers", href: "/best-sellers" },
+  { label: "New Arrivals", href: "/shop?offer=new" },
+  { label: "Best Sellers", href: "/shop?offer=best" },
   { label: "Support", href: "/support" },
 ];

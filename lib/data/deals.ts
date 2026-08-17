@@ -7,6 +7,7 @@ import type { Deal } from "./types";
 const ENDS_AT = "2026-01-05T23:59:59.000Z";
 
 export const deals: Deal[] = [
+  { productSlug: "lg-qned65-miniled-43-4k-smart-tv-2026", endsAt: ENDS_AT, stockLeft: 6 },
   { productSlug: "lg-nanocell-nu870-43-4k-smart-tv-2026", endsAt: ENDS_AT, stockLeft: 6 },
   { productSlug: "lg-12000btu-dual-inverter-convertible-5in1-smart-split", endsAt: ENDS_AT, stockLeft: 12 },
   { productSlug: "lg-ok75-1000w-karaoke-system", endsAt: ENDS_AT, stockLeft: 4 },
