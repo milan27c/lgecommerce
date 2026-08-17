@@ -4,6 +4,8 @@ export interface OfferRibbonProps {
   /** Whole-percent discount. Rendered as `24% OFF`. */
   discount: number;
   className?: string;
+  /** Overrides the default fill. DealCard uses a more visible primary→secondary gradient. */
+  gradientClassName?: string;
 }
 
 /**
@@ -11,11 +13,12 @@ export interface OfferRibbonProps {
  * DealCard and ProductCard so the offer reads the same everywhere. Position
  * it from the parent — it ships no placement of its own.
  */
-export function OfferRibbon({ discount, className }: OfferRibbonProps) {
+export function OfferRibbon({ discount, className, gradientClassName }: OfferRibbonProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-baseline gap-1 bg-gradient-to-br from-accent-500 to-ink-700 px-2 py-1 text-xs text-white",
+        "inline-flex items-baseline gap-1 px-2 py-1 text-xs text-white",
+        gradientClassName ?? "bg-gradient-to-br from-accent-500 to-ink-700",
         className,
       )}
     >

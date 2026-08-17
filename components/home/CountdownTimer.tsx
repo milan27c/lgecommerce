@@ -8,9 +8,11 @@ export interface CountdownTimerProps {
   className?: string;
 }
 
-/* Glass, not solid ink — the deals band behind it is a lit gradient. */
+/* Glass, not solid ink — the deals band behind it is a lit gradient.
+   Rounded corners are a deal-band-only exception (--radius-deal, see
+   globals.css) to match the rest of this section's Apple-style treatment. */
 const boxClass =
-  "grid min-w-14 place-items-center border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm";
+  "grid min-w-14 place-items-center rounded-deal border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm";
 
 /** Only the seconds box re-renders each tick, so the row doesn't jitter. */
 export function CountdownTimer({ endsAt, className }: CountdownTimerProps) {

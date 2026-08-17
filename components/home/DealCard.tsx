@@ -18,9 +18,11 @@ const DEFAULT_SIZES = "(min-width: 1024px) 22vw, (min-width: 640px) 33vw, 45vw";
 
 /**
  * The deals-band variant of the canonical card. Sits on the dark deal band,
- * so it keeps a plain white ground for legibility, but is otherwise the same
- * language as ProductCard — square grey image tile, name, price, nothing
- * else. Hover moves only the image.
+ * so it keeps a plain white ground for legibility, and rounds its corners
+ * (--radius-deal) to match the rest of that band's Apple-style treatment —
+ * a scoped exception to the sitewide sharp-corner rule (see globals.css).
+ * Image tile is white rather than the canonical neutral-100, deal-band only.
+ * Hover moves only the image.
  */
 export function DealCard({ product, sizes, className }: DealCardProps) {
   const discount = product.originalPrice
@@ -29,8 +31,13 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
   const hasOffer = Boolean(product.originalPrice) && discount > 0;
 
   return (
-    <article className={cn("group relative flex h-full flex-col bg-white", className)}>
-      <div className="relative aspect-square w-full overflow-hidden bg-neutral-100">
+    <article
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-deal bg-white shadow-md",
+        className,
+      )}
+    >
+      <div className="relative aspect-square w-full overflow-hidden bg-white">
         <Image
           src={product.image}
           alt={product.name}
@@ -40,7 +47,11 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
         />
 
         {hasOffer ? (
-          <OfferRibbon discount={discount} className="absolute right-0 top-0 z-10" />
+          <OfferRibbon
+            discount={discount}
+            gradientClassName="bg-gradient-to-br from-accent-600 to-ink-400"
+            className="absolute right-0 top-0 z-10"
+          />
         ) : null}
       </div>
 
