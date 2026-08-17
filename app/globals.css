@@ -148,10 +148,19 @@
   --text-price--letter-spacing: -0.02em;
 
   /* ---- Radius ----
-     Corners are sharp everywhere. --radius-full is reserved strictly for
-     literal circles and capsules — icon buttons, avatars, dots, slider
-     thumbs, orb/glow shapes. Nothing else uses a radius token. */
+     Corners are sharp everywhere EXCEPT interactive controls — buttons,
+     chips, and tab/pill-style toggles — which use --radius-control (10px).
+     Everything else (cards, product image tiles, inputs, banners) stays
+     rounded-none. --radius-full is reserved strictly for literal circles
+     and capsules — icon buttons, avatars, dots, slider thumbs, orb/glow
+     shapes. One further scoped exception: --radius-deal, used only inside
+     the deal countdown band (components/home/DealCountdown, DealCard,
+     CountdownTimer), which deliberately breaks from the sharp-corner
+     language the way the eco band breaks from the monochrome palette
+     (§3.3a). Do not reach for radius-deal anywhere else. */
+  --radius-control: 10px;
   --radius-full: 9999px;
+  --radius-deal: 16px;
 
   /* ---- Shadow ---- */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -191,6 +200,13 @@
   --animate-eco-drift-b: eco-drift-b 29s var(--ease-std) infinite alternate;
   --animate-eco-drift-c: eco-drift-c 25s var(--ease-std) infinite alternate;
   --animate-eco-rise: eco-rise 15s linear infinite;
+
+  /* Deal countdown band glow. Same transform-only mechanism as the eco
+     drift above, just re-timed so the two bands never resync when both
+     are visible on the home page at once. */
+  --animate-deal-drift-a: deal-drift-a 24s var(--ease-std) infinite alternate;
+  --animate-deal-drift-b: deal-drift-b 31s var(--ease-std) infinite alternate;
+  --animate-deal-drift-c: deal-drift-c 27s var(--ease-std) infinite alternate;
   /* Slow swell on the glow. Opacity only — it sits under the drift transform
      on the same element, which is the one place two properties are allowed to
      move together here because they are a single effect. */
@@ -281,6 +297,33 @@
     100% {
       transform: translate3d(22px, -132px, 0) rotate(26deg);
       opacity: 0;
+    }
+  }
+
+  @keyframes deal-drift-a {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(-6%, 6%, 0) scale(1.12);
+    }
+  }
+
+  @keyframes deal-drift-b {
+    from {
+      transform: translate3d(0, 0, 0) scale(1.06);
+    }
+    to {
+      transform: translate3d(5%, -4%, 0) scale(1);
+    }
+  }
+
+  @keyframes deal-drift-c {
+    from {
+      transform: translate3d(4%, -3%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(-5%, 4%, 0) scale(1.1);
     }
   }
 
@@ -415,6 +458,46 @@
 @utility eco-mote-d {
   animation-delay: -14s;
   animation-duration: 21s;
+}
+
+/* =========================================================================
+   Deal countdown band — components/home/DealCountdown
+   Apple-style ambient glow: soft blurred orbs in primary (accent), secondary
+   (ink) and white only, drifting via transform + opacity over a near-black
+   ground. Same mechanism as the eco band's aurora, no new hues introduced.
+   ========================================================================= */
+
+@utility bg-deal-night {
+  background-color: var(--color-ink-900);
+  background-image: radial-gradient(
+    70% 55% at 50% 0%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+/* Settles the edges so the glow reads as depth, not four lit corners. */
+@utility bg-deal-vignette {
+  background-image: radial-gradient(
+    70% 65% at 50% 45%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+@utility deal-orb {
+  border-radius: var(--radius-full);
+  filter: blur(110px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+@utility deal-orb-sm {
+  border-radius: var(--radius-full);
+  filter: blur(76px);
+  opacity: 0.4;
+  will-change: transform;
 }
 
 /* Household load split (components/home/UsageSplit). Track proportions are

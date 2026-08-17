@@ -51,7 +51,7 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-none font-medium transition-colors dur-base ease-out",
+    "inline-flex items-center justify-center gap-2 rounded-control font-medium transition-colors dur-base ease-out",
     "disabled:cursor-not-allowed disabled:opacity-50",
     focusRing,
     variants[variant],

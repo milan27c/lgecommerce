@@ -21,7 +21,7 @@ export function Chip({ children, tone = "neutral", className }: ChipProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-none border px-2.5 py-1 text-xs uppercase",
+        "inline-flex items-center gap-1 rounded-control border px-2.5 py-1 text-xs uppercase",
         tones[tone],
         className,
       )}

@@ -189,10 +189,11 @@ Headings step down one level on `< md`. Negative tracking on headings is what ma
 ### 3.7 Radius, border, shadow
 
 ```
+--radius-control: 10px
 --radius-full: 9999px
 ```
 
-**Corners are sharp everywhere** — buttons, cards, product image tiles, inputs, chips/pills, banners, hero slides. `--radius-full` is the only radius token left, and it is reserved strictly for things that are literally circular or a capsule around a single icon/digit: icon buttons, avatars, carousel dots, slider thumbs, star markers, glow-orb shapes, radio inputs. The moment something has readable text corners — a chip, a tab, a tag, a card — it's `rounded-none`, full stop.
+**Corners are sharp everywhere except interactive controls.** Buttons, chips/pills, and tab/toggle-style controls (`Button`, `Chip`, category tabs, pagination, filter pills, variant pickers) use `rounded-control` (10px) via the shared `Button`/`Chip` components or the `rounded-control` utility. Cards, product image tiles, inputs, selects, banners, and hero slides stay `rounded-none` — this rule doesn't extend to them. Icon-only square tiles (wishlist heart, drawer close) also stay `rounded-none`; they're not part of this exception. `--radius-full` is reserved strictly for things that are literally circular or a capsule around a single icon/digit: icon buttons, avatars, carousel dots, slider thumbs, star markers, glow-orb shapes, radio inputs.
 
 Borders are always `1px solid --color-neutral-200`, or `--color-neutral-300` on hover. No thick borders anywhere.
 
@@ -361,7 +362,7 @@ Seed by slug so the same product keeps the same image between renders. Add the h
 **Don't**
 - Don't use raw hex values, arbitrary Tailwind values (`text-[#FF6B35]`), or `!important`.
 - Don't use LG red, LG's fonts, or LG's brand layouts.
-- Don't use border radius anywhere except literal circles/capsules (`--radius-full`) — see §3.7.
+- Don't use border radius outside `rounded-control` on buttons/chips/tabs and literal circles/capsules (`--radius-full`) — see §3.7.
 - Don't add a UI kit, animation library, state manager, or icon package without being asked.
 - Don't animate more than one property group at a time on a single element.
 - Don't add loading spinners, scroll-jacking, autoplaying audio/video, or entrance animations longer than 600ms.

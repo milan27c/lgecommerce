@@ -82,7 +82,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
               aria-pressed={filters.categories.length === 0}
               onClick={() => updateFilters({ ...filters, categories: [] })}
               className={cn(
-                "whitespace-nowrap rounded-none border px-4 py-2 text-sm transition-colors dur-fast ease-out",
+                "whitespace-nowrap rounded-control border px-4 py-2 text-sm transition-colors dur-fast ease-out",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                 filters.categories.length === 0
                   ? "border-ink-900 bg-ink-900 font-medium text-white"
@@ -106,7 +106,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
                     })
                   }
                   className={cn(
-                    "whitespace-nowrap rounded-none border px-4 py-2 text-sm transition-colors dur-fast ease-out",
+                    "whitespace-nowrap rounded-control border px-4 py-2 text-sm transition-colors dur-fast ease-out",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                     active
                       ? "border-ink-900 bg-ink-900 font-medium text-white"
@@ -141,7 +141,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
               type="button"
               onClick={() => setDrawerOpen(true)}
               className={cn(
-                "hidden h-10 items-center gap-2 rounded-none border border-neutral-200 bg-white px-3.5 text-body font-medium text-ink-900",
+                "hidden h-10 items-center gap-2 rounded-control border border-neutral-200 bg-white px-3.5 text-body font-medium text-ink-900",
                 "transition-colors dur-fast ease-out hover:border-neutral-300 hover:text-accent-600 sm:inline-flex lg:hidden",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
               )}
@@ -214,7 +214,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 inline-flex h-11 items-center rounded-none bg-accent-500 px-5 text-body font-medium text-white transition-colors dur-base ease-out hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+              className="mt-6 inline-flex h-11 items-center rounded-control bg-accent-500 px-5 text-body font-medium text-white transition-colors dur-base ease-out hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
             >
               Clear all filters
             </button>
@@ -235,7 +235,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
         type="button"
         onClick={() => setDrawerOpen(true)}
         className={cn(
-          "fixed bottom-6 left-1/2 z-40 inline-flex h-12 -translate-x-1/2 items-center gap-2 rounded-none bg-ink-900 px-5",
+          "fixed bottom-6 left-1/2 z-40 inline-flex h-12 -translate-x-1/2 items-center gap-2 rounded-control bg-ink-900 px-5",
           "text-body font-medium text-white shadow-lg transition-colors dur-fast ease-out hover:bg-ink-800 sm:hidden",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
         )}
