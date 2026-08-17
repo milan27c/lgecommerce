@@ -61,28 +61,22 @@ Countdown driven by `useCountdown(targetDate)`; when it hits zero it rolls forwa
 **5 · FeaturedProducts**
 Section heading + "View all" link. 4-up grid on desktop (2-up mobile) of `ProductCard`. Reveal with stagger.
 
-**6 · SplitBanners**
-Two 16:9 promo cards side by side (stacked on mobile), each with a parallax background (max 40px travel) and a text block bottom-left. E.g. *OLED evo — picture beyond pixels* and *ThinQ — your home, in sync*.
-
-**6b · EnergySavings** — interactive savings forecast
+**6 · EnergySavings** — interactive savings forecast
 Full-bleed band on the eco ramp (`CLAUDE.md` §3.3a) — the only place on the site that ramp appears. White card split 2/3 on `lg`: left is the household input (number field + slider, 100–900 kWh, household presets, a static "where the power goes" split), right is the forecast — bill today vs bill on low energy LG, the monthly / yearly saving, and the three upgrades behind it as cards linking to their PDPs. The forecast panel holds an empty state until the first submit, then tracks the slider live; figures roll up on submit only, so a dragged slider is never chased by an animation.
 Maths in `lib/utils/forecastSavings.ts`, fixtures (tariff ladder, lane shares and efficiency gains) in `lib/data/energy.ts`.
 Background is three blurred aurora orbs and four drifting leaves over a masked grid lattice, all on `transform`/`opacity` — no `background-position` anywhere, so this band costs nothing from the page's two-animated-gradient budget.
 
-**7 · NewArrivals**
-Tabbed by top-level category (TV/Audio/Video · Appliances · Air Solutions · Monitors). Tab switch cross-fades the grid, `--dur-base`. 4-up grid, 8 items per tab.
+**6b · NewArrivals**
+No eyebrow — heading only. Horizontal `ProductRail`, 5-up on desktop, bleeding to the viewport's right edge. Prev/next arrows sit in the heading row (desktop only) where a "View all" link would otherwise go, driving the rail via a ref; no arrows or progress bar below the rail itself.
 
-**8 · CategoryShowcase**
-Editorial 3-column: one tall card (Refrigerators) + two stacked cards (Washing Machines, Air Conditioners). Image with `scale(1.04)` hover, heading + item count.
+**7 · SplitBanners**
+Two 16:9 promo cards side by side (stacked on mobile), each with a parallax background (max 40px travel) and a text block bottom-left. E.g. *OLED evo — picture beyond pixels* and *ThinQ — your home, in sync*.
 
-**9 · Reviews**
-3-up testimonial cards on `--gradient-tint`: stars, quote, name, verified-purchase chip. Auto-advancing on mobile as a single-card carousel.
+**8 · Reviews** — Google Reviews style
+No section background of its own — runs on the page's default `--color-neutral-50`, same as every other section. Left column: heading, "Excellent X.X out of 5 stars" with an info glyph, a 5-star average rating row, and a Google logo + wordmark (Google's own colours are an exception to the no-brand-colour rule, same footing as the LG mark in `CLAUDE.md` §2). Right column: a horizontal rail of testimonial cards (`--color-neutral-100` fill, `rounded-control` corners, no border) — stars, bold one-line title, quote, name + date — 1-up mobile / 2-up tablet / 3-up desktop, paged with prev/next circular arrow buttons and a "Show more reviews" control underneath.
 
-**10 · Newsletter**
-Centred block on ink-900 with a soft accent radial glow. Heading, one line, email input + accent CTA. Inline success state, no modal.
-
-**11 · Footer**
-4 link columns (Shop · Support · Company · Legal) + brand column with logo, tagline, and social icons. Payment method row. Bottom bar: copyright + a small line stating the site is an independent LG stockist prototype. Background ink-900, text ink-200, links hover to accent-400.
+**9 · Footer** (root layout, on every page)
+Newsletter subscribe band up top — mail badge, heading, one line, email input + accent CTA, inline success state, no modal — bordered off from 4 link columns (Shop · Support · Company · Legal) + brand column with logo, tagline, and social icons below. Payment method row. Bottom bar: copyright + a small line stating the site is an independent LG stockist prototype. Background ink-900, text ink-200, links hover to accent-400.
 
 ---
 
@@ -111,10 +105,6 @@ Sourced from lg.com/lk. Use these names **verbatim**. Category slugs in brackets
 ### Computers `computers`
 - **Monitors** `monitors` — Consumer Monitors · Gaming Monitors · UltraWide™ Monitors · 4K Monitors
 - **Monitor Accessories** `monitor-accessories`
-
-### LG AI `lg-ai`
-- LG Affectionate Intelligence · LG AI TV · LG AI Appliances · LG AI Mobility
-*(Editorial destination, not a shoppable listing — links to a story page.)*
 
 **Mega menu behaviour**
 Trigger on hover (desktop) and click/Enter (keyboard + touch), 120ms open delay, 200ms close delay so diagonal mouse travel doesn't dismiss it. Panel: full container width, white, `--radius-xl`, `--shadow-lg`, `1px` neutral-200 border, opens with `opacity 0→1` + `translateY(-8px→0)` over `--dur-base`.

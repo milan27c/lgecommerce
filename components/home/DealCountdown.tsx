@@ -20,8 +20,9 @@ export function DealCountdown() {
 
   return (
     <section
+      id="deals"
       aria-labelledby="deal-countdown-heading"
-      className="section-y relative overflow-hidden bg-deal-night"
+      className="section-y relative scroll-mt-28 overflow-hidden bg-deal-night"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <span className="deal-orb animate-deal-drift-a absolute -left-32 -top-40 size-120 bg-white/10 mix-blend-screen" />

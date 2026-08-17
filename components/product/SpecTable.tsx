@@ -10,7 +10,7 @@ export function SpecTable({ specs, className }: SpecTableProps) {
   return (
     <dl
       className={cn(
-        "divide-y divide-neutral-200 overflow-hidden rounded-none border border-neutral-200 bg-white",
+        "divide-y divide-neutral-200 overflow-hidden rounded-card border border-neutral-200 bg-white",
         className,
       )}
     >

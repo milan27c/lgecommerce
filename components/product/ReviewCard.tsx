@@ -11,7 +11,7 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
   return (
     <article
       className={cn(
-        "flex h-full flex-col rounded-none border border-neutral-200 bg-white p-5 sm:p-6",
+        "flex h-full flex-col rounded-card border border-neutral-200 bg-white p-5 sm:p-6",
         className,
       )}
     >

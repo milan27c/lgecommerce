@@ -2,7 +2,7 @@
 
 # Living Just Right — Project Guide
 
-Prototype e-commerce storefront selling **LG electronics only**. Premium, minimal visual language (mrmarvis.com / spoke-london.com) applied to an electronics catalogue: black and white, sharp corners, square product photography on a light grey field, calm and editorial rather than promo-dense.
+Prototype e-commerce storefront selling **LG electronics only**. Premium, minimal visual language (mrmarvis.com / spoke-london.com) applied to an electronics catalogue: black and white, square product photography on a light grey field, calm and editorial rather than promo-dense. Cards, panels and banners carry a soft 16px radius (`rounded-card`); the product grid is the one deliberate sharp-cornered exception (§3.7, §5).
 
 **Read `SITE-PLAN.md` before building any page.** It holds the route map, the home page section order, the full LG category tree for the mega menu, and the build phases.
 
@@ -30,7 +30,7 @@ Tailwind v4 has no `tailwind.config.js`. All design tokens live in the `@theme` 
 
 - The store sells **only LG products**. Every product in the catalogue is LG.
 - The LG logo and the word "LG" may be used freely — in the nav, on cards, in copy, in banners.
-- **Do not follow LG brand guidelines.** Do not use LG red (#A50034), LG's typography, or LG's layout patterns. This site has its own identity: black primary, dark grey secondary, sharp corners, calm minimal layout.
+- **Do not follow LG brand guidelines.** Do not use LG red (#A50034), LG's typography, or LG's layout patterns. This site has its own identity: black primary, dark grey secondary, soft-cornered cards and panels, calm minimal layout.
 - The store brand is **Living Just Right**. It is the site's own identity; LG is the product brand it stocks.
 - Logo: image wordmark, not CSS text. Two files in `public/images/` — `logo.png` (black + red script, for light surfaces) and `logow.png` (white cutout, for dark surfaces). Source art is 2172×724 (3:1). Component: `components/brand/Logo.tsx`, sizes `sm | md | lg`, `tone="light" | "dark"` picks the file. Swap-in ready — never hardcode the mark anywhere else. Note the red in this mark is an approved exception to the "no LG red" rule in §9 — it belongs to the Living Just Right wordmark itself, not to LG.
 
@@ -190,10 +190,13 @@ Headings step down one level on `< md`. Negative tracking on headings is what ma
 
 ```
 --radius-control: 10px
---radius-full: 9999px
+--radius-card:    16px
+--radius-full:    9999px
 ```
 
-**Corners are sharp everywhere except interactive controls.** Buttons, chips/pills, and tab/toggle-style controls (`Button`, `Chip`, category tabs, pagination, filter pills, variant pickers) use `rounded-control` (10px) via the shared `Button`/`Chip` components or the `rounded-control` utility. Cards, product image tiles, inputs, selects, banners, and hero slides stay `rounded-none` — this rule doesn't extend to them. Icon-only square tiles (wishlist heart, drawer close) also stay `rounded-none`; they're not part of this exception. `--radius-full` is reserved strictly for things that are literally circular or a capsule around a single icon/digit: icon buttons, avatars, carousel dots, slider thumbs, star markers, glow-orb shapes, radio inputs.
+**The ProductCard image tile is the one deliberate sharp-corner exception on the whole site — everything else takes a radius.** Small interactive controls — buttons, chips/pills, tab/toggle-style controls (`Button`, `Chip`, category tabs, pagination, filter pills, variant pickers), input fields, and small badges/pills — use `rounded-control` (10px) via the shared `Button`/`Chip` components or the `rounded-control` utility. Cards, panels, tables, accordions, image tiles/banners, hero slides, drawer sheets, and other section containers use `rounded-card` (16px) — this is the site-wide default for structural surfaces. `--radius-full` is reserved strictly for things that are literally circular or a capsule around a single icon/digit: icon buttons, avatars, carousel dots, slider thumbs, star markers, glow-orb shapes, radio inputs. Icon-only square tiles (drawer close) stay `rounded-none` — a control this small reads as a glyph, not a surface. The PDP wishlist button is the exception: it sits beside the `rounded-control` "Where to Buy" button and takes `rounded-control` too so the pair reads as one unit.
+
+The **`ProductCard` product image tile** (§5) is the sole sharp-corner exception anywhere on the site and must never take `rounded-card` — its edge stays exactly `rounded-none` regardless of what the rest of the page around it does. Full-bleed, edge-to-edge chrome that spans the full viewport width — `PromoStripe`, the sticky header, the sticky product bar, the breadcrumb strip, and dark full-width band backgrounds (`DealCountdown`, `EnergySavings` ground) — also stays `rounded-none`: there's no visible edge to round on a bar that runs off both sides of the viewport. `--radius-deal` and `--radius-eco` remain scoped 16px aliases of `--radius-card` for their own bands (§3.3a) — reach for `rounded-card` elsewhere, not those two.
 
 Borders are always `1px solid --color-neutral-200`, or `--color-neutral-300` on hover. No thick borders anywhere.
 
@@ -286,7 +289,7 @@ That's the complete field list. No rating/review count, no badge chip (Best/New/
 
 Price renders on **one line** — current price first, then the struck original at `sm`. The percentage never appears in the price row: it rides the `OfferRibbon` tag on the image. One row means offer and non-offer cards are the same height with nothing reserved, so a mixed grid still lines up.
 
-Card chrome: **none.** No border, no background, no shadow, no radius on the card itself — just the image tile and the text stacked under it, the way the reference sites (mrmarvis.com, spoke-london.com) run their product grids. Only the image tile has a fill (`--color-neutral-100`) and sharp corners.
+Card chrome: **none.** No border, no background, no shadow, no radius on the card itself — just the image tile and the text stacked under it, the way the reference sites (mrmarvis.com, spoke-london.com) run their product grids. Only the image tile has a fill (`--color-neutral-100`) and sharp corners — this tile is the one deliberate sharp-corner exception on the whole site (§3.7); every other card/panel/banner takes `rounded-card`.
 
 Hover (desktop only, `@media (hover: hover)`):
 - image `scale(1.04)` — that's it.
@@ -362,7 +365,7 @@ Seed by slug so the same product keeps the same image between renders. Add the h
 **Don't**
 - Don't use raw hex values, arbitrary Tailwind values (`text-[#FF6B35]`), or `!important`.
 - Don't use LG red, LG's fonts, or LG's brand layouts.
-- Don't use border radius outside `rounded-control` on buttons/chips/tabs and literal circles/capsules (`--radius-full`) — see §3.7.
+- Don't use a raw radius value outside the three tokens (`rounded-control`, `rounded-card`, `--radius-full`) — see §3.7. Don't round the `ProductCard` image tile or full-bleed edge-to-edge chrome; both stay `rounded-none`.
 - Don't add a UI kit, animation library, state manager, or icon package without being asked.
 - Don't animate more than one property group at a time on a single element.
 - Don't add loading spinners, scroll-jacking, autoplaying audio/video, or entrance animations longer than 600ms.

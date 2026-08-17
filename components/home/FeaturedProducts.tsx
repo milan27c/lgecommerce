@@ -24,7 +24,6 @@ export function FeaturedProducts() {
       <Container>
         <SectionHeading
           id="featured-products-heading"
-          eyebrow="Featured products"
           title="The month's standouts"
           titleClassName="text-section sm:text-section-lg"
           link={{ label: "View all", href: "/best-sellers" }}

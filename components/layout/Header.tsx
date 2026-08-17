@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { MegaMenu } from "@/components/layout/MegaMenu";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { SearchOverlay } from "@/components/layout/SearchOverlay";
 import { Container } from "@/components/ui/Container";
 import { HeartIcon, MenuIcon, SearchIcon, UserIcon } from "@/components/icons";
 import { primaryNav } from "@/lib/data/content";
@@ -24,6 +25,7 @@ const activeUnderline = "absolute -bottom-1.5 left-0 right-0 h-0.5";
 export function Header() {
   const pathname = usePathname();
   const [navOpen, setNavOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const navItems = primaryNav.map((item) => {
     const active = isNavActive(pathname, item.href);
@@ -61,7 +63,10 @@ export function Header() {
         <div className="flex h-14 items-center gap-3 sm:gap-4">
           <button
             type="button"
-            onClick={() => setNavOpen(true)}
+            onClick={() => {
+              setSearchOpen(false);
+              setNavOpen(true);
+            }}
             aria-label="Open menu"
             aria-expanded={navOpen}
             className={cn(iconButton, "-ml-2 lg:hidden")}
@@ -89,7 +94,7 @@ export function Header() {
                 type="search"
                 placeholder="Search OLED TVs, refrigerators, inverter ACs"
                 className={cn(
-                  "h-10 w-full rounded-none border border-neutral-200 bg-neutral-50 pl-10 pr-4 text-body text-ink-900 placeholder:text-neutral-400",
+                  "h-10 w-full rounded-control border border-neutral-200 bg-neutral-50 pl-10 pr-4 text-body text-ink-900 placeholder:text-neutral-400",
                   "transition-colors dur-base ease-out hover:border-neutral-300",
                   "focus:border-accent-300 focus:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
                 )}
@@ -98,9 +103,19 @@ export function Header() {
           </form>
 
           <div className="ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1 lg:flex-1 lg:justify-end">
-            <Link href="/search" aria-label="Search" className={iconButton}>
+            <button
+              type="button"
+              data-search-trigger
+              onClick={() => {
+                setNavOpen(false);
+                setSearchOpen((value) => !value);
+              }}
+              aria-label="Search"
+              aria-expanded={searchOpen}
+              className={iconButton}
+            >
               <SearchIcon className="size-5" />
-            </Link>
+            </button>
             <Link href="/account" aria-label="Account" className={cn(iconButton, "hidden sm:grid")}>
               <UserIcon className="size-5" />
             </Link>
@@ -111,6 +126,7 @@ export function Header() {
         </div>
       </Container>
 
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
       <MobileNav open={navOpen} onClose={() => setNavOpen(false)} />
     </header>
   );

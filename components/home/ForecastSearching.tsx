@@ -44,7 +44,7 @@ export function ForecastSearching({ duration, usage }: ForecastSearchingProps) {
         className="animate-scan-sweep pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-gradient-to-b from-transparent via-accent-100 to-transparent mix-blend-multiply"
       />
 
-      <div className="flex items-start gap-3 rounded-none border border-neutral-200 bg-white p-5">
+      <div className="flex items-start gap-3 rounded-eco border border-neutral-200 bg-white p-5">
         <span className="relative grid size-9 shrink-0 place-items-center rounded-full bg-accent-50 text-accent-600">
           <span
             aria-hidden
@@ -94,12 +94,12 @@ export function ForecastSearching({ duration, usage }: ForecastSearchingProps) {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-none border border-neutral-200 bg-neutral-50 p-5">
+        <div className="rounded-eco border border-neutral-200 bg-neutral-50 p-5">
           <Skeleton className="h-3 w-24" />
           <Skeleton className="mt-3 h-8 w-40" />
           <Skeleton className="mt-3 h-3 w-32" />
         </div>
-        <div className="rounded-none border border-neutral-200 bg-neutral-50 p-5">
+        <div className="rounded-eco border border-neutral-200 bg-neutral-50 p-5">
           <Skeleton className="h-3 w-28" />
           <Skeleton className="mt-3 h-8 w-40" />
           <Skeleton className="mt-3 h-3 w-32" />
@@ -108,7 +108,7 @@ export function ForecastSearching({ duration, usage }: ForecastSearchingProps) {
 
       {/* Dark tile — plain bars rather than Skeleton, whose shimmer is tuned for
           the light surfaces above. */}
-      <div aria-hidden className="rounded-none bg-ink-900 px-5 py-4">
+      <div aria-hidden className="rounded-eco bg-ink-900 px-5 py-4">
         <div className="flex items-center gap-3">
           <span className="size-8 shrink-0 rounded-full bg-ink-700" />
           <div className="flex-1">
@@ -126,7 +126,7 @@ export function ForecastSearching({ duration, usage }: ForecastSearchingProps) {
             <li
               key={label}
               className={cn(
-                "overflow-hidden rounded-none border border-neutral-200 bg-white transition-opacity dur-slow ease-out",
+                "overflow-hidden rounded-eco border border-neutral-200 bg-white transition-opacity dur-slow ease-out",
                 index <= step ? "opacity-100" : "opacity-40",
               )}
             >

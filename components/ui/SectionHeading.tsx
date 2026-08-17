@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons";
 import { cn } from "@/lib/utils/cn";
@@ -10,6 +11,8 @@ export interface SectionHeadingProps {
   eyebrow?: string;
   copy?: string;
   link?: { label: string; href: string };
+  /** Custom content for the heading's right-side slot — ignored when `link` is set. */
+  action?: ReactNode;
   /** `center-mobile` centres title/copy/link below `sm`, reverting to `start`'s row layout at `sm` and up. */
   align?: "start" | "center" | "center-mobile";
   /** `eco` is the energy savings band only — see CLAUDE.md §3.2a. */
@@ -53,6 +56,7 @@ export function SectionHeading({
   eyebrow,
   copy,
   link,
+  action,
   align = "start",
   tone = "light",
   className,
@@ -101,6 +105,8 @@ export function SectionHeading({
           {link.label}
           <ArrowRightIcon className="size-4" />
         </Link>
+      ) : action ? (
+        <div className="shrink-0">{action}</div>
       ) : null}
     </div>
   );

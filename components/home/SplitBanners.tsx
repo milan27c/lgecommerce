@@ -1,5 +1,4 @@
 import { SplitBannerCard } from "@/components/home/SplitBannerCard";
-import { Container } from "@/components/ui/Container";
 import { splitBanners } from "@/lib/data/banners";
 
 export function SplitBanners() {
@@ -8,13 +7,11 @@ export function SplitBanners() {
       <h2 id="split-banners-heading" className="sr-only">
         Featured LG technologies
       </h2>
-      <Container>
-        <ul className="grid list-none gap-4 lg:grid-cols-2 lg:gap-5">
-          {splitBanners.map((banner, index) => (
-            <SplitBannerCard key={banner.id} banner={banner} index={index} />
-          ))}
-        </ul>
-      </Container>
+      <ul className="grid list-none gap-0 lg:grid-cols-2">
+        {splitBanners.map((banner, index) => (
+          <SplitBannerCard key={banner.id} banner={banner} index={index} />
+        ))}
+      </ul>
     </section>
   );
 }

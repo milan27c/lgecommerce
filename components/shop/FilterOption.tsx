@@ -26,7 +26,7 @@ export function FilterOption({
   name,
   disabled,
 }: FilterOptionProps) {
-  const rounded = type === "radio" ? "rounded-full" : "rounded-none";
+  const rounded = type === "radio" ? "rounded-full" : "rounded-[3px]";
 
   return (
     <label

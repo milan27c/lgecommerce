@@ -72,7 +72,7 @@ export function ProductInfo({ product, detail, className }: ProductInfoProps) {
           type="button"
           aria-label={`Add ${product.name} to wishlist`}
           className={cn(
-            "grid size-13 shrink-0 place-items-center rounded-none border border-neutral-200 bg-white text-neutral-500",
+            "grid size-13 shrink-0 place-items-center rounded-control border border-neutral-200 bg-white text-neutral-500",
             "transition-colors dur-base ease-out hover:border-neutral-300 hover:text-accent-600",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
           )}

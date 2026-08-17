@@ -17,7 +17,7 @@ export function ProductGallery({ images, name, className }: ProductGalleryProps)
 
   return (
     <div className={className}>
-      <div className="relative aspect-square overflow-hidden rounded-none border border-neutral-200 bg-white">
+      <div className="relative aspect-square overflow-hidden rounded-card border border-neutral-200 bg-white">
         {shots.map((src, index) => (
           <Image
             key={src}
@@ -44,7 +44,7 @@ export function ProductGallery({ images, name, className }: ProductGalleryProps)
                 aria-label={`Show view ${index + 1} of ${shots.length}`}
                 aria-pressed={index === active}
                 className={cn(
-                  "relative block size-20 overflow-hidden rounded-none border bg-white",
+                  "relative block size-20 overflow-hidden rounded-control border bg-white",
                   "transition-[border-color,opacity] dur-base ease-out",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                   index === active

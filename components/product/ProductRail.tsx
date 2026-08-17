@@ -1,11 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
 import { Container } from "@/components/ui/Container";
 import type { Product } from "@/lib/data/types";
 import { cn } from "@/lib/utils/cn";
+
+export interface ProductRailHandle {
+  scrollLeft: () => void;
+  scrollRight: () => void;
+}
 
 export interface ProductRailProps {
   products: Product[];
@@ -20,6 +25,12 @@ export interface ProductRailProps {
   bleedRight?: boolean;
   /** Set false to drop the scroll-progress bar and leave the arrows alone. */
   progress?: boolean;
+  /** Set false to suppress the built-in prev/next arrows — e.g. when a caller
+      renders its own pair elsewhere and drives the rail via the ref handle. */
+  arrows?: boolean;
+  /** Fires whenever the rail hits or leaves either edge, so an external arrow
+      pair can mirror the disabled state. */
+  onEdgeChange?: (state: { atStart: boolean; atEnd: boolean }) => void;
   className?: string;
 }
 
@@ -28,14 +39,19 @@ const widths: Record<4 | 5, string> = {
   5: "w-full sm:w-1/3 lg:w-1/5",
 };
 
-export function ProductRail({
-  products,
-  label,
-  perView = 5,
-  bleedRight = false,
-  progress: showProgress = true,
-  className,
-}: ProductRailProps) {
+export const ProductRail = forwardRef<ProductRailHandle, ProductRailProps>(function ProductRail(
+  {
+    products,
+    label,
+    perView = 5,
+    bleedRight = false,
+    progress: showProgress = true,
+    arrows = true,
+    onEdgeChange,
+    className,
+  },
+  ref,
+) {
   const scroller = useRef<HTMLUListElement>(null);
   const [progress, setProgress] = useState(0);
   const [atStart, setAtStart] = useState(true);
@@ -65,6 +81,15 @@ export function ProductRail({
     node.scrollBy({ left: direction * node.clientWidth * 0.8, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    onEdgeChange?.({ atStart, atEnd });
+  }, [atStart, atEnd, onEdgeChange]);
+
+  useImperativeHandle(ref, () => ({
+    scrollLeft: () => step(-1),
+    scrollRight: () => step(1),
+  }));
+
   const arrow =
     "grid size-10 place-items-center rounded-full border border-neutral-200 bg-white text-ink-900 shadow-sm transition-colors dur-base ease-out hover:border-neutral-300 hover:text-accent-600 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2";
 
@@ -80,14 +105,16 @@ export function ProductRail({
         </div>
       ) : null}
 
-      <div className="mt-4 hidden justify-end gap-2 lg:flex">
-        <button type="button" onClick={() => step(-1)} disabled={atStart} aria-label="Scroll left" className={arrow}>
-          <ChevronLeftIcon className="size-5" />
-        </button>
-        <button type="button" onClick={() => step(1)} disabled={atEnd} aria-label="Scroll right" className={arrow}>
-          <ChevronRightIcon className="size-5" />
-        </button>
-      </div>
+      {arrows ? (
+        <div className="mt-4 hidden justify-end gap-2 lg:flex">
+          <button type="button" onClick={() => step(-1)} disabled={atStart} aria-label="Scroll left" className={arrow}>
+            <ChevronLeftIcon className="size-5" />
+          </button>
+          <button type="button" onClick={() => step(1)} disabled={atEnd} aria-label="Scroll right" className={arrow}>
+            <ChevronRightIcon className="size-5" />
+          </button>
+        </div>
+      ) : null}
     </>
   );
 
@@ -120,4 +147,4 @@ export function ProductRail({
       {bleedRight ? <Container>{controls}</Container> : controls}
     </div>
   );
-}
+});

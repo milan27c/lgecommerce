@@ -17,7 +17,7 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
 
   return (
     <Reveal as="li" index={index}>
-      <div className="group relative aspect-hero-mobile overflow-hidden rounded-none bg-neutral-100 transition-transform dur-base ease-out hover:-translate-y-1 md:aspect-video">
+      <div className="group relative aspect-hero-mobile overflow-hidden rounded-none bg-neutral-100 md:aspect-video">
         {/* Background only — never text, never product images. */}
         <div
           ref={ref}
@@ -45,17 +45,24 @@ export function SplitBannerCard({ banner, index }: SplitBannerCardProps) {
           className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent"
         />
 
-        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-          <h3 className="text-h3 text-white">
-            <Link
-              href={banner.href}
-              className="rounded-none after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
-            >
-              {banner.title}
-            </Link>
-          </h3>
-          <p className="mt-1.5 max-w-sm text-body text-ink-100">{banner.copy}</p>
-          <Button href={banner.href} variant="inverse" size="sm" className="relative z-10 mt-4">
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-7">
+          <div className="min-w-0">
+            <h3 className="text-h3 text-white">
+              <Link
+                href={banner.href}
+                className="rounded-card after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+              >
+                {banner.title}
+              </Link>
+            </h3>
+            <p className="mt-1.5 max-w-sm text-body text-ink-100">{banner.copy}</p>
+          </div>
+          <Button
+            href={banner.href}
+            variant="inverse"
+            size="sm"
+            className="relative z-10 shrink-0"
+          >
             View Product
           </Button>
         </div>

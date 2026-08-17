@@ -25,7 +25,7 @@ export function CategoryGrid() {
               href={tile.href}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
             >
-              <span className="relative block aspect-tall w-full overflow-hidden bg-neutral-100">
+              <span className="relative block aspect-tall w-full overflow-hidden rounded-control bg-neutral-100">
                 <Image
                   src={tile.image}
                   alt=""

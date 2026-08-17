@@ -174,30 +174,6 @@ export const categories: Category[] = [
       { name: "Monitor Accessories", slug: "monitor-accessories", items: [] },
     ],
   },
-  {
-    slug: "lg-ai",
-    name: "LG AI",
-    image: tile("lg-ai"),
-    editorial: true,
-    promo: {
-      title: "Affectionate Intelligence",
-      copy: "AI that reads the room before it acts. Read the story.",
-      href: "/c/lg-ai",
-      image: promoImage("lg-ai"),
-    },
-    groups: [
-      {
-        name: "LG AI",
-        slug: "lg-ai",
-        items: [
-          { name: "LG Affectionate Intelligence", slug: "affectionate-intelligence" },
-          { name: "LG AI TV", slug: "ai-tv" },
-          { name: "LG AI Appliances", slug: "ai-appliances" },
-          { name: "LG AI Mobility", slug: "ai-mobility" },
-        ],
-      },
-    ],
-  },
 ];
 
 export interface CategoryTile {

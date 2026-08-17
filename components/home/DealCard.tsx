@@ -59,7 +59,7 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
         <h3 className="line-clamp-2 flex-1 text-body font-medium text-ink-900">
           <Link
             href={productHref(product)}
-            className="rounded-none after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="rounded-deal after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             {product.name}
           </Link>

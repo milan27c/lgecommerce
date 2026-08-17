@@ -148,19 +148,28 @@
   --text-price--letter-spacing: -0.02em;
 
   /* ---- Radius ----
-     Corners are sharp everywhere EXCEPT interactive controls — buttons,
-     chips, and tab/pill-style toggles — which use --radius-control (10px).
-     Everything else (cards, product image tiles, inputs, banners) stays
-     rounded-none. --radius-full is reserved strictly for literal circles
-     and capsules — icon buttons, avatars, dots, slider thumbs, orb/glow
-     shapes. One further scoped exception: --radius-deal, used only inside
-     the deal countdown band (components/home/DealCountdown, DealCard,
-     CountdownTimer), which deliberately breaks from the sharp-corner
-     language the way the eco band breaks from the monochrome palette
-     (§3.3a). Do not reach for radius-deal anywhere else. */
+     Small interactive controls — buttons, chips, inputs, tab/pill-style
+     toggles, small badges — use --radius-control (10px). Cards, panels,
+     tables, accordions, image tiles/banners, hero slides and other section
+     containers use --radius-card (16px), the site-wide default for
+     structural surfaces. --radius-full is reserved strictly for literal
+     circles and capsules — icon buttons, avatars, dots, slider thumbs,
+     orb/glow shapes. --radius-deal (deal countdown band) and --radius-eco
+     (energy savings band) are scoped aliases of the same 16px card radius,
+     kept as distinct tokens so those two bands stay easy to audit/restyle
+     independently — do not reach for either outside its own band.
+
+     The ProductCard image tile (components/product/ProductCard.tsx) is the
+     one deliberate sharp-corner exception on the whole site — it stays
+     rounded-none always (§5). Full-bleed, edge-to-edge chrome that runs the
+     full viewport width (PromoStripe, the sticky header/product bar, the
+     breadcrumb strip, dark band section backgrounds) also stays rounded-none:
+     radius reads as broken on a bar with no visible edge to round. */
   --radius-control: 10px;
+  --radius-card: 16px;
   --radius-full: 9999px;
   --radius-deal: 16px;
+  --radius-eco: 16px;
 
   /* ---- Shadow ---- */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -500,6 +509,36 @@
   will-change: transform;
 }
 
+/* =========================================================================
+   Newsletter band — components/home/Newsletter
+   Same ambient-orb mechanism as the deal band, scaled down for a shorter
+   panel: primary, secondary and white blurred orbs over the dark ground.
+   Reuses the deal band's drift keyframes (pure transform, not band-specific).
+   ========================================================================= */
+
+@utility newsletter-orb {
+  border-radius: var(--radius-full);
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+@utility newsletter-orb-sm {
+  border-radius: var(--radius-full);
+  filter: blur(64px);
+  opacity: 0.4;
+  will-change: transform;
+}
+
+@utility bg-newsletter-vignette {
+  background-image: radial-gradient(
+    75% 75% at 50% 45%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 65%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
 /* Household load split (components/home/UsageSplit). Track proportions are
    fixed here rather than inlined per segment — they mirror the `share` values
    on `energyLanes`, with the last column standing for everything not upgraded. */
@@ -579,20 +618,23 @@
   }
 }
 
-/* Right-bleeding rail track. Its left edge lines up with the container gutter
-   and it runs to the viewport's right edge, so the next card is cut by the
-   screen rather than by a margin. The percentage resolves against the parent's
-   width — the body box, scrollbar excluded — so nothing overflows the page.
-   Apply to a full-width scroller, not to one already inside a Container.
-   Carries its own breakpoints rather than composing with `px-*`, so nothing
-   can win on source order. scroll-padding has to match the padding or mandatory
-   snapping parks the first card against the scrollport edge, scrolling the
-   gutter out of sight. */
+/* Right-bleeding rail track. Its left edge lines up with the container gutter;
+   mid-scroll, the next card is cut by the screen rather than by a margin, but
+   the trailing gutter still matches the leading one so scrolling all the way
+   ends with the last card sitting at the same right margin as the rest of the
+   page, not flush against the viewport edge. The percentage resolves against
+   the parent's width — the body box, scrollbar excluded — so nothing overflows
+   the page. Apply to a full-width scroller, not to one already inside a
+   Container. Carries its own breakpoints rather than composing with `px-*`,
+   so nothing can win on source order. scroll-padding has to match the padding
+   on both sides or mandatory snapping parks a card against the scrollport
+   edge, scrolling its gutter out of sight. */
 @utility rail-bleed-right {
   --rail-gutter: 0.625rem;
   padding-left: var(--rail-gutter);
   padding-right: var(--rail-gutter);
   scroll-padding-left: var(--rail-gutter);
+  scroll-padding-right: var(--rail-gutter);
 
   @media (width >= 40rem) {
     --rail-gutter: 0.875rem;
@@ -600,7 +642,6 @@
 
   @media (width >= 64rem) {
     --rail-gutter: max(0.75rem, calc((100% - var(--container-site)) / 2 + 0.75rem));
-    padding-right: 0;
   }
 }
 

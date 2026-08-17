@@ -120,7 +120,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
           })}
         </ul>
 
-        <div className="flex flex-nowrap items-center justify-between gap-3 rounded-none border border-neutral-200 bg-white px-4 py-3">
+        <div className="flex flex-nowrap items-center justify-between gap-3 rounded-control border border-neutral-200 bg-white px-4 py-3">
           <p className="min-w-0 truncate text-sm text-neutral-500">
             {results.length === 0 ? (
               "No products match these filters"
@@ -165,7 +165,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
                     setPage(1);
                   }}
                   className={cn(
-                    "h-10 appearance-none rounded-none border border-neutral-200 bg-white pl-3.5 pr-9 text-body text-ink-900",
+                    "h-10 appearance-none rounded-control border border-neutral-200 bg-white pl-3.5 pr-9 text-body text-ink-900",
                     "transition-colors dur-fast ease-out hover:border-neutral-300",
                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
                   )}
@@ -206,7 +206,7 @@ export function ShopCatalog({ initialOffer }: ShopCatalogProps) {
             ))}
           </ul>
         ) : (
-          <div className="mt-5 rounded-none border border-neutral-200 bg-white px-6 py-16 text-center">
+          <div className="mt-5 rounded-card border border-neutral-200 bg-white px-6 py-16 text-center">
             <h2 className="text-h3 text-ink-900">Nothing matches yet</h2>
             <p className="mx-auto mt-2 max-w-md text-body text-neutral-500">
               Try widening the price range or removing a filter to see more of the catalogue.

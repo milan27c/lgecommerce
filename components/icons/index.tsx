@@ -288,3 +288,37 @@ export function PauseIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function InfoIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 11v5.2" />
+      <circle cx="12" cy="8.2" r="0.15" fill="currentColor" stroke="currentColor" strokeWidth={2.4} />
+    </svg>
+  );
+}
+
+/** Google "G" mark — brand colours are inherent to the logo, not a site token. */
+export function GoogleIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden focusable={false} {...props}>
+      <path
+        fill="#4285F4"
+        d="M23.5 12.3c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.87c2.27-2.09 3.56-5.17 3.56-8.82Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.96-1.07 7.94-2.9l-3.87-3a7.15 7.15 0 0 1-10.65-3.76H1.4v3.09A12 12 0 0 0 12 24Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.42 14.34a7.2 7.2 0 0 1 0-4.62V6.63H1.4a12 12 0 0 0 0 10.8l4.02-3.09Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.75c1.76 0 3.34.6 4.59 1.79l3.44-3.43A11.6 11.6 0 0 0 12 0a12 12 0 0 0-10.6 6.63l4.02 3.09A7.15 7.15 0 0 1 12 4.75Z"
+      />
+    </svg>
+  );
+}

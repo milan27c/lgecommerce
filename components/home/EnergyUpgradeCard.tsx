@@ -20,18 +20,18 @@ export interface EnergyUpgradeCardProps {
 /**
  * One upgrade behind the forecast. Not a ProductCard — it leads with the energy
  * the lane gives back rather than with the offer, and the eco ramp is confined
- * to that one chip. Hover matches the canonical card: image scale, lift, border,
- * shadow, and nothing else.
+ * to that one chip. Card and image tile share one background; hover only zooms
+ * the image, matching the canonical card (§5).
  */
 export function EnergyUpgradeCard({ lane }: EnergyUpgradeCardProps) {
   const { product } = lane;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-none border border-neutral-200 bg-white transition-[transform,border-color,box-shadow] dur-base ease-out hover:-translate-y-1 hover:border-neutral-300 hover:shadow-md">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-eco bg-neutral-100">
       <div className="relative aspect-card overflow-hidden bg-neutral-100">
         <span
           className={cn(
-            "absolute left-2 top-2 z-10 inline-flex items-center rounded-none px-2.5 py-1 text-xs text-white",
+            "absolute left-2 top-2 z-10 inline-flex items-center rounded-control px-2.5 py-1 text-xs text-white",
             chips[lane.tone],
           )}
         >
@@ -53,7 +53,7 @@ export function EnergyUpgradeCard({ lane }: EnergyUpgradeCardProps) {
         <h4 className="line-clamp-2 flex-1 text-body font-medium text-ink-900">
           <Link
             href={productHref(product)}
-            className="rounded-none after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 focus-visible:ring-offset-2"
+            className="rounded-eco after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 focus-visible:ring-offset-2"
           >
             {product.name}
           </Link>

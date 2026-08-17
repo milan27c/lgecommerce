@@ -126,7 +126,6 @@ export function EnergySavings() {
       <Container>
         <SectionHeading
           id="energy-savings-heading"
-          eyebrow="Energy savings"
           title="See what LG efficiency saves you"
           titleClassName="text-section sm:text-section-lg"
           copy="Tell us roughly what you use in a month and we will forecast what moving to the low energy LG lineup does to the bill."
@@ -134,7 +133,7 @@ export function EnergySavings() {
           tone="eco-dark"
         />
 
-        <Reveal className="overflow-hidden rounded-none border border-white/12 bg-white shadow-lg">
+        <Reveal className="overflow-hidden rounded-eco border border-white/12 bg-white shadow-lg">
           <div className="grid lg:grid-cols-5">
             <form
               onSubmit={onSubmit}
@@ -162,7 +161,7 @@ export function EnergySavings() {
                   onChange={onType}
                   onBlur={onBlur}
                   className={cn(
-                    "h-14 w-32 rounded-none border border-neutral-200 bg-neutral-50 px-4 text-h3 tabular-nums text-ink-900",
+                    "h-14 w-32 rounded-eco border border-neutral-200 bg-neutral-50 px-4 text-h3 tabular-nums text-ink-900",
                     "dur-base ease-out transition-colors hover:border-neutral-300",
                     "focus:border-eco-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 focus-visible:ring-offset-2",
                   )}
@@ -173,7 +172,7 @@ export function EnergySavings() {
               <div className="relative mt-6 flex h-6 items-center">
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 h-1.5 overflow-hidden bg-neutral-200"
+                  className="absolute inset-x-0 h-1.5 overflow-hidden rounded-full bg-neutral-200"
                 >
                   {/* Dynamic transform rather than a width, so the fill never
                       animates a geometric property. The inner span counter-

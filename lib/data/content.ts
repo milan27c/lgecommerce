@@ -13,38 +13,6 @@ export const trustItems: TrustItem[] = [
   { id: "returns", label: "Easy Returns", copy: "30 days, collection included" },
 ];
 
-export interface ShowcaseCard {
-  id: string;
-  title: string;
-  itemCount: number;
-  href: string;
-  image: string;
-}
-
-export const showcaseCards: ShowcaseCard[] = [
-  {
-    id: "refrigerators",
-    title: "Refrigerators",
-    itemCount: 42,
-    href: "/c/appliances/refrigerators",
-    image: "/images/room by room/Refrigerators.png",
-  },
-  {
-    id: "washing-machines",
-    title: "Washing Machines",
-    itemCount: 36,
-    href: "/c/appliances/washing-machines",
-    image: "/images/room by room/washing machines.png",
-  },
-  {
-    id: "air-conditioners",
-    title: "Air Conditioners",
-    itemCount: 28,
-    href: "/c/air-solutions/air-conditioners",
-    image: "/images/room by room/ac.png",
-  },
-];
-
 export interface Guide {
   id: string;
   title: string;
@@ -87,8 +55,10 @@ export const guides: Guide[] = [
 export interface Review {
   id: string;
   rating: number;
+  title: string;
   quote: string;
   name: string;
+  date: string;
   product: string;
 }
 
@@ -96,26 +66,62 @@ export const reviews: Review[] = [
   {
     id: "review-1",
     rating: 5,
+    title: "Every bit as good as the showroom",
     quote:
       "Delivered in two days and the installers took the old set away. The QNED65 is every bit as good as the showroom demo.",
     name: "Nadia R.",
+    date: "06/12/2026",
     product: 'QNED65 MiniLED 43"',
   },
   {
     id: "review-2",
     rating: 5,
+    title: "Beat the mall on price",
     quote:
       "Third LG appliance from this store. Pricing beat the mall by a clear margin and the warranty was registered before I got home.",
     name: "Dilan P.",
+    date: "05/28/2026",
     product: "InstaView™ Refrigerator",
   },
   {
     id: "review-3",
     rating: 4,
+    title: "Quiet, and it shows on the bill",
     quote:
       "The Dual Inverter runs quiet enough to sleep through and the power bill dropped noticeably in the first month.",
     name: "Ayesha F.",
+    date: "05/09/2026",
     product: "Dual Inverter Split AC 24,000 BTU",
+  },
+  {
+    id: "review-4",
+    rating: 5,
+    title: "Setup took ten minutes",
+    quote:
+      "ThinQ paired with the washer straight out of the box. Cycle notifications on my phone are more useful than I expected.",
+    name: "Ruwan S.",
+    date: "04/22/2026",
+    product: "AI Direct Drive Front Load Washer",
+  },
+  {
+    id: "review-5",
+    rating: 4,
+    title: "Good stock, honest advice",
+    quote:
+      "Staff talked me out of the model I walked in for and into one that actually fit my kitchen. No pressure either way.",
+    name: "Michelle T.",
+    date: "04/03/2026",
+    product: "InstaView™ Door-in-Door® Refrigerator",
+  },
+  {
+    id: "review-6",
+    rating: 5,
+    title: "Picture quality is the whole reason",
+    quote:
+      "Moved up from a budget TV and the difference in black levels alone was worth it. OLED evo lives up to the name.",
+    name: "Harith K.",
+    date: "03/19/2026",
+    product: "OLED evo C4 65\" 4K Smart TV",
   },
 ];
 
@@ -200,7 +206,7 @@ export const promoMessages = [
 export const primaryNav = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
-  { label: "Deals", href: "/deals" },
+  { label: "Deals", href: "/#deals" },
   { label: "New Arrivals", href: "/shop?offer=new" },
   { label: "Best Sellers", href: "/shop?offer=best" },
   { label: "Support", href: "/support" },
