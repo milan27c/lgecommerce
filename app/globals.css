@@ -1,26 +1,839 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Pointer devices only. Hover-revealed affordances stay permanently visible on
+   touch, where there is no hover state to reveal them. */
+@custom-variant pointer-fine (@media (hover: hover) and (pointer: fine));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* =========================================================================
+   Living Just Right — design tokens (CLAUDE.md §3–4)
+   Every colour, radius, shadow, gradient and motion value lives here.
+   Components must never write a raw hex or an arbitrary Tailwind value.
+   ========================================================================= */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* ---- Typeface: SF Pro via the system stack (CLAUDE.md §3.6) ---- */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* ---- Accent — orange ---- */
+  --color-accent-50: #fff4f0;
+  --color-accent-100: #ffe6dc;
+  --color-accent-200: #ffc9b3;
+  --color-accent-300: #ffa985;
+  --color-accent-400: #ff8a5c;
+  --color-accent-500: #ff6b35;
+  --color-accent-600: #e85420;
+  --color-accent-700: #c24218;
+  --color-accent-800: #993312;
+  --color-accent-900: #7a2a10;
+  --color-accent-950: #431407;
+
+  /* ---- Ink — deep aubergine ---- */
+  --color-ink-50: #f5f4f7;
+  --color-ink-100: #e9e7ee;
+  --color-ink-200: #cfcbd9;
+  --color-ink-300: #ada7bf;
+  --color-ink-400: #837b9b;
+  --color-ink-500: #605878;
+  --color-ink-600: #4a4260;
+  --color-ink-700: #37304a;
+  --color-ink-800: #262036;
+  --color-ink-900: #1a1625;
+  --color-ink-950: #100d18;
+
+  /* ---- Neutral — cool grey ---- */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  /* ---- Eco — green (energy + running-cost surfaces only) ----
+     Deliberately outside the accent/ink identity. The savings forecast is the
+     one place the site talks about power rather than product, and it reads as
+     its own idea. Nothing else on the site may use this ramp. */
+  --color-eco-50: #ecfdf5;
+  --color-eco-100: #d1fae5;
+  --color-eco-200: #a7f3d0;
+  --color-eco-300: #6ee7b7;
+  --color-eco-400: #34d399;
+  --color-eco-500: #10b981;
+  --color-eco-600: #059669;
+  --color-eco-700: #047857;
+  --color-eco-800: #065f46;
+  --color-eco-900: #064e3b;
+  --color-eco-950: #022c22;
+
+  /* ---- Teal — the energy band's night sky (see §3.3a) ----
+     Only the savings forecast band uses these, alongside the eco ramp: the
+     band's ground is deep teal, the glow above it is teal and emerald. */
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-700: #0f766e;
+  --color-teal-900: #134e4a;
+  --color-teal-950: #042f2e;
+
+  /* ---- Support colours ---- */
+  --color-sale: #e11d48;
+  --color-success: #16a34a;
+  --color-eco: #10b981;
+  --color-info: #2563eb;
+  --color-warning: #f59e0b;
+  --color-star: #fbbf24;
+
+  /* ---- Gradients ---- */
+  --gradient-ember: linear-gradient(135deg, #ff6b35 0%, #ff8a5c 50%, #ffa985 100%);
+  --gradient-dusk: linear-gradient(135deg, #1a1625 0%, #37304a 55%, #c24218 100%);
+  --gradient-mist: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --gradient-tint: linear-gradient(135deg, #fff4f0 0%, #f1f5f9 100%);
+  /* Deals label. Stops mirror around the centre so an alternating pan never
+     jumps — teal-700 · teal-500 · eco-500 · teal-500 · teal-700. */
+  --gradient-deal: linear-gradient(
+    90deg,
+    #0f766e 0%,
+    #14b8a6 25%,
+    #10b981 50%,
+    #14b8a6 75%,
+    #0f766e 100%
+  );
+
+  /* ---- Type scale (size / line-height / weight / tracking) ---- */
+  --text-display: 56px;
+  --text-display--line-height: 60px;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-h1: 40px;
+  --text-h1--line-height: 46px;
+  --text-h1--font-weight: 700;
+  --text-h1--letter-spacing: -0.025em;
+
+  --text-h2: 30px;
+  --text-h2--line-height: 36px;
+  --text-h2--font-weight: 650;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: 22px;
+  --text-h3--line-height: 28px;
+  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 400;
+  --text-body-lg--letter-spacing: -0.01em;
+
+  --text-body: 15px;
+  --text-body--line-height: 24px;
+  --text-body--font-weight: 400;
+  --text-body--letter-spacing: 0;
+
+  --text-sm: 13px;
+  --text-sm--line-height: 20px;
+  --text-sm--font-weight: 400;
+  --text-sm--letter-spacing: 0;
+
+  --text-xs: 11px;
+  --text-xs--line-height: 16px;
+  --text-xs--font-weight: 600;
+  --text-xs--letter-spacing: 0.04em;
+
+  --text-price: 20px;
+  --text-price--line-height: 24px;
+  --text-price--font-weight: 700;
+  --text-price--letter-spacing: -0.02em;
+
+  /* ---- Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ---- Shadow ---- */
+  --shadow-xs: 0 1px 2px rgba(26, 22, 37, 0.04);
+  --shadow-sm: 0 1px 3px rgba(26, 22, 37, 0.06), 0 1px 2px rgba(26, 22, 37, 0.04);
+  --shadow-md: 0 4px 12px rgba(26, 22, 37, 0.06), 0 2px 4px rgba(26, 22, 37, 0.04);
+  --shadow-lg: 0 12px 32px rgba(26, 22, 37, 0.08), 0 4px 8px rgba(26, 22, 37, 0.04);
+  --shadow-accent: 0 8px 24px rgba(255, 107, 53, 0.22);
+
+  /* ---- Layout ---- */
+  --container-site: 1280px;
+
+  --aspect-hero: 3 / 1;
+  --aspect-hero-mobile: 9 / 16;
+  --aspect-banner: 4 / 1;
+  --aspect-tall: 3 / 4;
+  --aspect-wide: 2 / 1;
+  --aspect-card: 3 / 2;
+
+  /* ---- Motion (CLAUDE.md §4) ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+  --dur-hero: 600ms;
+
+  --animate-gradient-pan: gradient-pan 18s var(--ease-std) infinite alternate;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-ken-burns: ken-burns 6000ms var(--ease-out) both;
+  --animate-dot-progress: dot-progress 6000ms linear both;
+  --animate-fade-in: fade-in 240ms var(--ease-out) both;
+  /* Drifts the Deals gradient text. Short travel, so 6s reads as a slow shift. */
+  --animate-deal-pan: gradient-pan 6s var(--ease-std) infinite alternate;
+  /* Four identical copies in the track, so one step is a quarter of it. */
+  --animate-marquee: marquee 45s linear infinite;
+
+  /* Energy band aurora. Transform + opacity only, so this costs the page
+     nothing from the two-animated-gradient budget — no background-position
+     anywhere in it. Long, unequal periods so the three orbs never resync. */
+  --animate-eco-drift-a: eco-drift-a 22s var(--ease-std) infinite alternate;
+  --animate-eco-drift-b: eco-drift-b 29s var(--ease-std) infinite alternate;
+  --animate-eco-drift-c: eco-drift-c 25s var(--ease-std) infinite alternate;
+  --animate-eco-rise: eco-rise 15s linear infinite;
+  /* Slow swell on the glow. Opacity only — it sits under the drift transform
+     on the same element, which is the one place two properties are allowed to
+     move together here because they are a single effect. */
+  --animate-eco-breathe-a: eco-breathe 17s var(--ease-std) infinite alternate;
+  --animate-eco-breathe-b: eco-breathe 23s var(--ease-std) infinite alternate;
+  --animate-soft-pulse: soft-pulse 2.8s var(--ease-out) infinite;
+  /* Forecast search. A beam crossing the placeholder panel — transform +
+     opacity, at the pace of the shimmer already used by Skeleton. The beam is
+     a quarter of the panel tall, so the travel below is in its own units. */
+  --animate-scan-sweep: scan-sweep 1.6s var(--ease-std) infinite;
+
+  @keyframes gradient-pan {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes ken-burns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-25%, 0, 0);
+    }
+  }
+
+  @keyframes eco-drift-a {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(7%, -5%, 0) scale(1.14);
+    }
+  }
+
+  @keyframes eco-drift-b {
+    from {
+      transform: translate3d(0, 0, 0) scale(1.08);
+    }
+    to {
+      transform: translate3d(-6%, 4%, 0) scale(1);
+    }
+  }
+
+  @keyframes eco-drift-c {
+    from {
+      transform: translate3d(-4%, 2%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(5%, -3%, 0) scale(1.1);
+    }
+  }
+
+  /* A leaf lifting off and drifting out. Fades in and out at both ends so it
+     never pops, and travels less than a third of the band's height. */
+  @keyframes eco-rise {
+    0% {
+      transform: translate3d(0, 16px, 0) rotate(0deg);
+      opacity: 0;
+    }
+    18% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 0.28;
+    }
+    100% {
+      transform: translate3d(22px, -132px, 0) rotate(26deg);
+      opacity: 0;
+    }
+  }
+
+  /* Swell on the background glow — the band never sits perfectly still. */
+  @keyframes eco-breathe {
+    from {
+      opacity: 0.34;
+    }
+    to {
+      opacity: 0.62;
+    }
+  }
+
+  /* Idle halo on the forecast placeholder — a breath, not a spinner. */
+  @keyframes soft-pulse {
+    from {
+      transform: scale(0.92);
+      opacity: 0.5;
+    }
+    to {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  /* Search beam. Starts above the panel and leaves below it, fading at both
+     ends so it never lands as a hard edge. */
+  @keyframes scan-sweep {
+    0% {
+      transform: translate3d(0, -110%, 0);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 420%, 0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes dot-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================================================
+   Utilities — so components never need arbitrary values
+   ========================================================================= */
+
+@utility bg-ember {
+  background-color: var(--color-accent-500);
+  background-image: var(--gradient-ember);
+}
+
+@utility bg-dusk {
+  background-color: var(--color-ink-900);
+  background-image: var(--gradient-dusk);
+}
+
+/* Deals band. Static layered radials over an ink ground — accent orange
+   glow at the edges, deep ink/aubergine in the middle, so the white cards
+   sit in a lit pocket. Orange-on-ink keeps this band on-brand and distinct
+   from the Energy band's teal-night ground, which owns the eco ramp. No
+   animation: the only animated gradient on Home is the promo stripe. */
+@utility bg-deal-aurora {
+  background-color: var(--color-ink-900);
+  background-image:
+    radial-gradient(72% 96% at 6% -8%, rgba(255, 107, 53, 0.32) 0%, rgba(255, 107, 53, 0) 62%),
+    radial-gradient(58% 82% at 96% 6%, rgba(255, 138, 92, 0.26) 0%, rgba(255, 138, 92, 0) 64%),
+    radial-gradient(70% 78% at 46% 112%, rgba(194, 66, 24, 0.45) 0%, rgba(194, 66, 24, 0) 70%),
+    radial-gradient(46% 62% at 80% 84%, rgba(96, 88, 120, 0.5) 0%, rgba(96, 88, 120, 0) 72%),
+    linear-gradient(135deg, #1a1625 0%, #262036 55%, #431407 100%);
+}
+
+/* Fine dot field over the aurora. Masked so it fades out before the edges. */
+@utility bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(60% 70% at 50% 34%, #000 0%, transparent 100%);
+}
+
+/* =========================================================================
+   Energy savings band — components/home/EnergySavings
+   A deep teal-to-green night ground under heavily blurred orbs of teal and
+   emerald, screened over it so they read as glow rather than as paint. All of
+   the motion here is transform + opacity, so the band adds nothing to the
+   promo stripe's animated-gradient budget.
+   ========================================================================= */
+
+/* The ground. Solid colour first, so the band is never bare while the gradient
+   paints. Teal at the head, green through the middle, ink at the foot — the
+   white forecast card sits in the lit part of it. */
+@utility bg-eco-night {
+  background-color: var(--color-eco-950);
+  background-image:
+    radial-gradient(78% 60% at 50% 0%, rgba(20, 184, 166, 0.28) 0%, rgba(20, 184, 166, 0) 70%),
+    linear-gradient(
+      168deg,
+      var(--color-teal-950) 0%,
+      var(--color-eco-950) 42%,
+      #05201c 74%,
+      var(--color-ink-950) 100%
+    );
+}
+
+/* Settles the edges, so the glow reads as depth rather than as four corners
+   lighting up. Sits above the orbs and below the content. */
+@utility bg-eco-vignette {
+  background-image: radial-gradient(
+    72% 64% at 50% 44%,
+    rgba(2, 44, 34, 0) 0%,
+    rgba(2, 44, 34, 0.34) 62%,
+    rgba(4, 6, 12, 0.6) 100%
+  );
+}
+
+/* One blurred orb. Colour comes from a bg-* class on the element. The blur
+   radius is deliberately larger than the orb, so edges never resolve. */
+@utility eco-orb {
+  border-radius: var(--radius-full);
+  filter: blur(104px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+/* Same orb at a tighter blur — used on its own, never alongside `eco-orb`, so
+   the small orbs keep some shape instead of washing out entirely. */
+@utility eco-orb-sm {
+  border-radius: var(--radius-full);
+  filter: blur(72px);
+  opacity: 0.45;
+  will-change: transform;
+}
+
+/* Drifting leaf. Negative delays start the field mid-flight so it is already
+   populated on the first frame instead of filling in over half a minute. */
+@utility eco-mote {
+  color: var(--color-teal-300);
+  opacity: 0;
+  animation: var(--animate-eco-rise);
+  will-change: transform;
+}
+
+@utility eco-mote-a {
+  animation-delay: -1s;
+  animation-duration: 15s;
+}
+@utility eco-mote-b {
+  animation-delay: -6s;
+  animation-duration: 19s;
+}
+@utility eco-mote-c {
+  animation-delay: -11s;
+  animation-duration: 17s;
+}
+@utility eco-mote-d {
+  animation-delay: -14s;
+  animation-duration: 21s;
+}
+
+/* Household load split (components/home/UsageSplit). Track proportions are
+   fixed here rather than inlined per segment — they mirror the `share` values
+   on `energyLanes`, with the last column standing for everything not upgraded. */
+@utility usage-split {
+  display: grid;
+  grid-template-columns: 38fr 32fr 16fr 14fr;
+  gap: 3px;
+}
+
+/* The usage scale: light at low consumption, heavy at high. Drawn once at full
+   track width and revealed by the fill, so a given usage always lands on the
+   same colour. */
+@utility bg-usage-scale {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-eco-500) 0%,
+    var(--color-eco-400) 18%,
+    var(--color-warning) 55%,
+    var(--color-sale) 100%
+  );
+}
+
+/* Single-value usage slider. The native track and thumb are transparent — the
+   visible track is drawn underneath by the component, and its fill is a
+   scaleX() transform, so nothing animates a geometric property. The thumb takes
+   `currentColor`, so the component tints it to match the point on the scale it
+   is sitting on. */
+@utility range-usage {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 24px;
+    background: transparent;
+  }
+
+  &::-moz-range-track {
+    height: 24px;
+    background: transparent;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    border: 3px solid currentColor;
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  &::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    border: 3px solid currentColor;
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px color-mix(in oklab, currentColor 32%, transparent);
+  }
+
+  &:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 4px color-mix(in oklab, currentColor 32%, transparent);
+  }
+}
+
+/* Discount pennant on the deal cards — notched bottom edge (reference ribbon). */
+@utility ribbon-notch {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 7px), 0 100%);
+}
+
+/* The pennant's raised face: a vertical bevel, a lit top edge and a shaded
+   underside, so it reads as a physical tag sitting on the shot. */
+@utility ribbon-face {
+  background-image: linear-gradient(180deg, #ff8a5c 0%, #ff6b35 44%, #e85420 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 -10px 14px -9px rgba(67, 20, 7, 0.65);
+}
+
+/* Cast shadow for the pennant. `drop-shadow` traces the clipped notch, which a
+   box-shadow on the clipped element itself cannot do. */
+@utility ribbon-lift {
+  filter: drop-shadow(0 5px 8px rgba(26, 22, 37, 0.3)) drop-shadow(0 1px 1px rgba(26, 22, 37, 0.22));
+}
+
+/* Right-bleeding rail track. Its left edge lines up with the container gutter
+   and it runs to the viewport's right edge, so the next card is cut by the
+   screen rather than by a margin. The percentage resolves against the parent's
+   width — the body box, scrollbar excluded — so nothing overflows the page.
+   Apply to a full-width scroller, not to one already inside a Container.
+   Carries its own breakpoints rather than composing with `px-*`, so nothing
+   can win on source order. scroll-padding has to match the padding or mandatory
+   snapping parks the first card against the scrollport edge, scrolling the
+   gutter out of sight. */
+@utility rail-bleed-right {
+  --rail-gutter: 1rem;
+  padding-left: var(--rail-gutter);
+  padding-right: var(--rail-gutter);
+  scroll-padding-left: var(--rail-gutter);
+
+  @media (width >= 40rem) {
+    --rail-gutter: 1.5rem;
+  }
+
+  @media (width >= 64rem) {
+    --rail-gutter: max(2rem, calc((100% - var(--container-site)) / 2 + 2rem));
+    padding-right: 0;
+  }
+}
+
+@utility bg-mist {
+  background-color: #ffffff;
+  background-image: var(--gradient-mist);
+}
+
+@utility bg-tint {
+  background-color: var(--color-accent-50);
+  background-image: var(--gradient-tint);
+}
+
+/* Gradient-filled label — no background fill, the glyphs carry the colour.
+   Pairs with animate-deal-pan; the wide background is what the pan travels. */
+@utility text-deal {
+  background-image: var(--gradient-deal);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--color-teal-700);
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pairs with animate-gradient-pan. Always sits on a solid fallback above. */
+@utility bg-pan {
+  background-size: 300% 300%;
+}
+
+/* Promo stripe marquee — edges dissolve instead of clipping mid-word. */
+@utility marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 48px,
+    /* The right fade clears the dismiss button so text never runs under it. */
+    #000 calc(100% - 120px),
+    transparent calc(100% - 24px)
+  );
+}
+
+/* Reading a moving line is hard — let a pointer hold it still. */
+@utility marquee-hold {
+  @media (hover: hover) {
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@utility dur-fast {
+  transition-duration: var(--dur-fast);
+}
+
+@utility dur-base {
+  transition-duration: var(--dur-base);
+}
+
+@utility dur-slow {
+  transition-duration: var(--dur-slow);
+}
+
+@utility dur-hero {
+  transition-duration: var(--dur-hero);
+}
+
+/* Reveal stagger — 60ms per item, capped at 6 items (CLAUDE.md §4.3) */
+@utility reveal-d0 {
+  transition-delay: 0ms;
+}
+@utility reveal-d1 {
+  transition-delay: 60ms;
+}
+@utility reveal-d2 {
+  transition-delay: 120ms;
+}
+@utility reveal-d3 {
+  transition-delay: 180ms;
+}
+@utility reveal-d4 {
+  transition-delay: 240ms;
+}
+@utility reveal-d5 {
+  transition-delay: 300ms;
+}
+
+/* Product image tile inset — roughly 12% of the tile (CLAUDE.md §5) */
+@utility p-tile {
+  padding: 12%;
+}
+
+/* Same inset on the 3:2 card tile. Percentage padding resolves against width,
+   so the vertical value is scaled down to keep the visual inset even. */
+@utility p-tile-card {
+  padding: 7% 10%;
+}
+
+/* Deal card: the tile runs the full card width, so the shot needs far less
+   inset than a bordered tile does. */
+@utility p-tile-deal {
+  padding: 4% 6%;
+}
+
+/* Dual-handle price slider — components/shop/PriceFilter. Both inputs sit on
+   the same track, so only the thumbs take pointer events. */
+@utility range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 20px;
+    background: transparent;
+  }
+
+  &::-moz-range-track {
+    height: 20px;
+    background: transparent;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-accent-500);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-accent-500);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  &:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px var(--color-accent-200);
+  }
+
+  &:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 3px var(--color-accent-200);
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Section rhythm: 64px mobile / 88px desktop */
+@utility section-y {
+  padding-block: 64px;
+  @media (width >= 64rem) {
+    padding-block: 88px;
+  }
+}
+
+/* Soft accent radial glow (newsletter, feature band) */
+@utility glow-accent {
+  background-image: radial-gradient(
+    60% 80% at 50% 0%,
+    rgba(255, 107, 53, 0.28) 0%,
+    rgba(255, 107, 53, 0) 70%
+  );
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-neutral-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-200);
+    color: var(--color-ink-900);
+  }
+
+  /* Scroll reveal — fade + 16px rise, fires once (CLAUDE.md §4.2) */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+  }
+
+  [data-reveal="in"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================================
+   Reduced motion — a fully static, fully usable site
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
