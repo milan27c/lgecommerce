@@ -7,19 +7,19 @@ export const heroBanners: Banner[] = [
     headline: "Freshness,\nMade Effortless",
     cta: { label: "Shop refrigerators", href: "/c/appliances/refrigerators" },
     image: "/images/hero/newhero8.jpg",
-    mobileImage: "/images/hero/newmobile3.png",
+    mobileImage: "/images/hero/newmobile4.jpg",
     tone: "dark",
     scrimOpacity: 0.6,
-    hideTextOnDesktop: true,
+    hideText: true,
   },
   {
     id: "together-tv",
     headline: "Bring Everyone Together",
     cta: { label: "Shop LG TVs", href: "/c/tv-audio-video/tvs" },
     image: "/images/hero/newhero7.jpg",
-    mobileImage: "/images/hero/newmoblile2.png",
+    mobileImage: "/images/hero/newmobile5.jpg",
     tone: "dark",
-    hideTextOnDesktop: true,
+    hideText: true,
   },
 ];
 

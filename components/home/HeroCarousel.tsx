@@ -86,58 +86,51 @@ export function HeroCarousel() {
                 />
               </div>
 
-              {/* Legibility scrim — light-toned slides sit on dark artwork, so the
-                  wash goes dark; dark-toned slides sit on light artwork, so it's white.
-                  Both run up from the base on mobile, in from the left on desktop. */}
-              <div
-                aria-hidden
-                style={banner.scrimOpacity != null ? { opacity: banner.scrimOpacity } : undefined}
-                className={cn(
-                  "absolute inset-0",
-                  light
-                    ? cn(
-                        "bg-gradient-to-t from-black/40 via-black/15 to-transparent",
-                        !banner.hideTextOnDesktop && "md:bg-gradient-to-r md:from-black/35 md:via-black/15",
-                      )
-                    : cn(
-                        "bg-gradient-to-t from-white/45 via-white/20 to-transparent",
-                        !banner.hideTextOnDesktop && "md:bg-gradient-to-r md:from-white/40 md:via-white/20",
-                      ),
-                )}
-              />
-
-              <Container
-                className={cn(
-                  "relative flex h-full items-end justify-center pb-16 text-center md:items-center md:justify-start md:pb-0 md:text-left",
-                  banner.hideTextOnDesktop && "md:hidden",
-                )}
-              >
-                <div
-                  className={cn(
-                    "max-w-sm transition-transform dur-hero ease-out md:max-w-lg",
-                    active
-                      ? "translate-y-0 md:translate-x-0"
-                      : "translate-y-4 md:translate-x-6 md:translate-y-0",
-                  )}
-                >
-                  <h2
+              {!banner.hideText ? (
+                <>
+                  {/* Legibility scrim — light-toned slides sit on dark artwork, so the
+                      wash goes dark; dark-toned slides sit on light artwork, so it's white.
+                      Both run up from the base on mobile, in from the left on desktop. */}
+                  <div
+                    aria-hidden
+                    style={banner.scrimOpacity != null ? { opacity: banner.scrimOpacity } : undefined}
                     className={cn(
-                      "whitespace-pre-line text-h3 font-semibold sm:text-h2 lg:text-h1",
-                      light ? "text-white" : "text-ink-900",
+                      "absolute inset-0",
+                      light
+                        ? "bg-gradient-to-t from-black/40 via-black/15 to-transparent md:bg-gradient-to-r md:from-black/35 md:via-black/15"
+                        : "bg-gradient-to-t from-white/45 via-white/20 to-transparent md:bg-gradient-to-r md:from-white/40 md:via-white/20",
                     )}
-                  >
-                    {banner.headline}
-                  </h2>
-                  <Button
-                    href={banner.cta.href}
-                    size="md"
-                    variant={light ? "outline" : "primary"}
-                    className="mt-5"
-                  >
-                    {banner.cta.label}
-                  </Button>
-                </div>
-              </Container>
+                  />
+
+                  <Container className="relative flex h-full items-end justify-center pb-16 text-center md:items-center md:justify-start md:pb-0 md:text-left">
+                    <div
+                      className={cn(
+                        "max-w-sm transition-transform dur-hero ease-out md:max-w-lg",
+                        active
+                          ? "translate-y-0 md:translate-x-0"
+                          : "translate-y-4 md:translate-x-6 md:translate-y-0",
+                      )}
+                    >
+                      <h2
+                        className={cn(
+                          "whitespace-pre-line text-h3 font-semibold sm:text-h2 lg:text-h1",
+                          light ? "text-white" : "text-ink-900",
+                        )}
+                      >
+                        {banner.headline}
+                      </h2>
+                      <Button
+                        href={banner.cta.href}
+                        size="md"
+                        variant={light ? "outline" : "primary"}
+                        className="mt-5"
+                      >
+                        {banner.cta.label}
+                      </Button>
+                    </div>
+                  </Container>
+                </>
+              ) : null}
             </div>
           );
         })}
