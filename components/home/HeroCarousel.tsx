@@ -95,12 +95,23 @@ export function HeroCarousel() {
                 className={cn(
                   "absolute inset-0",
                   light
-                    ? "bg-gradient-to-t from-black/40 via-black/15 to-transparent md:bg-gradient-to-r md:from-black/35 md:via-black/15"
-                    : "bg-gradient-to-t from-white/45 via-white/20 to-transparent md:bg-gradient-to-r md:from-white/40 md:via-white/20",
+                    ? cn(
+                        "bg-gradient-to-t from-black/40 via-black/15 to-transparent",
+                        !banner.hideTextOnDesktop && "md:bg-gradient-to-r md:from-black/35 md:via-black/15",
+                      )
+                    : cn(
+                        "bg-gradient-to-t from-white/45 via-white/20 to-transparent",
+                        !banner.hideTextOnDesktop && "md:bg-gradient-to-r md:from-white/40 md:via-white/20",
+                      ),
                 )}
               />
 
-              <Container className="relative flex h-full items-end justify-center pb-16 text-center md:items-center md:justify-start md:pb-0 md:text-left">
+              <Container
+                className={cn(
+                  "relative flex h-full items-end justify-center pb-16 text-center md:items-center md:justify-start md:pb-0 md:text-left",
+                  banner.hideTextOnDesktop && "md:hidden",
+                )}
+              >
                 <div
                   className={cn(
                     "max-w-sm transition-transform dur-hero ease-out md:max-w-lg",

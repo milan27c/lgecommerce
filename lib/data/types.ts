@@ -65,6 +65,8 @@ export interface Banner {
   tone?: "light" | "dark";
   /** Multiplier on the legibility scrim's opacity, 0-1. Defaults to 1. */
   scrimOpacity?: number;
+  /** Drops the headline/CTA text (and its scrim) on desktop, keeping them on mobile. */
+  hideTextOnDesktop?: boolean;
 }
 
 export interface Deal {
