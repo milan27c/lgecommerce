@@ -19,6 +19,7 @@ export const heroBanners: Banner[] = [
     image: "/images/hero/newhero2.png",
     mobileImage: "/images/hero/newmoblile2.png",
     tone: "dark",
+    hideTextOnDesktop: true,
   },
 ];
 
