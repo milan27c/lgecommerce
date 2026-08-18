@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { OfferRibbon } from "@/components/product/OfferRibbon";
 import { PriceBlock } from "@/components/product/PriceBlock";
+import { ProductImageMark } from "@/components/product/ProductImageMark";
 import type { Product } from "@/lib/data/types";
 import { calcDiscount } from "@/lib/utils/calcDiscount";
 import { cn } from "@/lib/utils/cn";
@@ -31,6 +32,8 @@ export function ProductCard({ product, sizes, showOffer = true, className }: Pro
   return (
     <article className={cn("group relative flex h-full flex-col", className)}>
       <div className="relative aspect-square overflow-hidden bg-neutral-100">
+        <ProductImageMark />
+
         {hasOffer ? (
           <OfferRibbon discount={discount} className="absolute right-0 top-0 z-10" />
         ) : null}

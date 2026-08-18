@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProductImageMark } from "@/components/product/ProductImageMark";
 import type { LaneTone } from "@/lib/data/energy";
 import { cn } from "@/lib/utils/cn";
 import type { LaneForecast } from "@/lib/utils/forecastSavings";
@@ -29,6 +30,9 @@ export function EnergyUpgradeCard({ lane }: EnergyUpgradeCardProps) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-eco bg-neutral-100">
       <div className="relative aspect-card overflow-hidden bg-neutral-100">
+        {/* Top-left is already the energy chip here, so the mark moves right. */}
+        <ProductImageMark className="left-auto right-2" />
+
         <span
           className={cn(
             "absolute left-2 top-2 z-10 inline-flex items-center rounded-control px-2.5 py-1 text-xs text-white",

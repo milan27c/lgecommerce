@@ -91,6 +91,7 @@ export function HeroCarousel() {
                   Both run up from the base on mobile, in from the left on desktop. */}
               <div
                 aria-hidden
+                style={banner.scrimOpacity != null ? { opacity: banner.scrimOpacity } : undefined}
                 className={cn(
                   "absolute inset-0",
                   light

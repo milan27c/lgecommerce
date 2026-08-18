@@ -73,7 +73,7 @@ export function ProductStickyBar({ name, price, sections, className }: ProductSt
               {formatPrice(price)}
             </span>
             <Button type="button" size="sm">
-              Where to Buy
+              Buy Now
             </Button>
           </div>
         </div>

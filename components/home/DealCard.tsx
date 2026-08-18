@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { OfferRibbon } from "@/components/product/OfferRibbon";
+import { ProductImageMark } from "@/components/product/ProductImageMark";
 import { calcDiscount } from "@/lib/utils/calcDiscount";
 import { formatPrice } from "@/lib/utils/formatPrice";
 import type { Product } from "@/lib/data/types";
@@ -38,6 +39,8 @@ export function DealCard({ product, sizes, className }: DealCardProps) {
       )}
     >
       <div className="relative aspect-square w-full overflow-hidden bg-white">
+        <ProductImageMark />
+
         <Image
           src={product.image}
           alt={product.name}

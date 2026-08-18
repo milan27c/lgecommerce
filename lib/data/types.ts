@@ -61,6 +61,8 @@ export interface Banner {
   mobileImage?: string;
   /** Text/button treatment for the artwork behind it. Defaults to "dark". */
   tone?: "light" | "dark";
+  /** Multiplier on the legibility scrim's opacity, 0-1. Defaults to 1. */
+  scrimOpacity?: number;
 }
 
 export interface Deal {

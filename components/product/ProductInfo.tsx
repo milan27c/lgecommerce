@@ -66,7 +66,7 @@ export function ProductInfo({ product, detail, className }: ProductInfoProps) {
 
       <div className="mt-6 flex items-center gap-3">
         <Button size="lg" className="flex-1 sm:flex-none sm:px-10">
-          Where to Buy
+          Buy Now
         </Button>
         <button
           type="button"

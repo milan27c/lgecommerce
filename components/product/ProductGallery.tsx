@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ProductImageMark } from "@/components/product/ProductImageMark";
 import { cn } from "@/lib/utils/cn";
 
 export interface ProductGalleryProps {
@@ -18,6 +19,8 @@ export function ProductGallery({ images, name, className }: ProductGalleryProps)
   return (
     <div className={className}>
       <div className="relative aspect-square overflow-hidden rounded-card border border-neutral-200 bg-white">
+        <ProductImageMark className="sm:h-6" />
+
         {shots.map((src, index) => (
           <Image
             key={src}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BundleOffers } from "@/components/product/BundleOffers";
 import { FaqAccordion } from "@/components/product/FaqAccordion";
 import { FeatureTiles } from "@/components/product/FeatureTiles";
 import { ProductGallery } from "@/components/product/ProductGallery";
@@ -15,6 +16,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { tvBundleSlug } from "@/lib/data/bundles";
 import { categories } from "@/lib/data/categories";
 import { getProductDetail } from "@/lib/data/productDetail";
 import { products } from "@/lib/data/products";
@@ -56,6 +58,10 @@ export default async function ProductPage({ params }: PageProps<"/p/[slug]">) {
   const detail = getProductDetail(product);
   const category = categories.find((entry) => entry.slug === product.category);
   const gallery = [product.image, ...(product.gallery ?? [])];
+  const hasBundle = product.slug === tvBundleSlug;
+  const sections = hasBundle
+    ? [...SECTIONS, { id: "bundle-offer", label: "Bundle Offer" }]
+    : SECTIONS;
 
   const related = products
     .filter((entry) => entry.slug !== product.slug && entry.category === product.category)
@@ -84,7 +90,7 @@ export default async function ProductPage({ params }: PageProps<"/p/[slug]">) {
         </div>
       </Container>
 
-      <ProductStickyBar name={product.name} price={product.price} sections={SECTIONS} />
+      <ProductStickyBar name={product.name} price={product.price} sections={sections} />
 
       {/* --------------------------------------------------------- Features */}
       <section id="features" aria-labelledby="features-heading" className={anchored}>
@@ -168,13 +174,15 @@ export default async function ProductPage({ params }: PageProps<"/p/[slug]">) {
         </Container>
       </section>
 
+      {/* --------------------------------------------------- Bundle offers */}
+      {hasBundle ? <BundleOffers product={product} /> : null}
+
       {/* ---------------------------------- Related grid (SITE-PLAN.md §1) */}
       {related.length > 0 ? (
         <Section labelledBy="related-heading">
           <Container>
             <SectionHeading
               id="related-heading"
-              eyebrow="Related products"
               title="You may also like"
             />
             <ProductGrid products={related} />
