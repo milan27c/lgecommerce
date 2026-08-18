@@ -43,7 +43,10 @@ export function ProductCard({ product, sizes, showOffer = true, className }: Pro
           alt={product.name}
           fill
           sizes={sizes ?? DEFAULT_SIZES}
-          className="p-tile object-contain transition-transform dur-slow ease-out group-hover:scale-104"
+          className={cn(
+            product.imageInset === "roomy" ? "p-tile-roomy" : "p-tile",
+            "object-contain transition-transform dur-slow ease-out group-hover:scale-104",
+          )}
         />
       </div>
 

@@ -20,7 +20,7 @@ export const products: Product[] = [
   // ---------------------------------------------------------------- TVs
   {
     slug: "lg-qned65-miniled-43-4k-smart-tv-2026",
-    name: 'LG 108 cm (43") QNED AI QNED65 MiniLED 4K Smart TV 2026',
+    name: 'LG (43") QNED AI QNED65 MiniLED 4K Smart TV 2026',
     category: "tv-audio-video",
     subcategory: "qned-miniled-tvs",
     price: 189000,
@@ -42,7 +42,7 @@ export const products: Product[] = [
   },
   {
     slug: "lg-nanocell-nu870-43-4k-smart-tv-2026",
-    name: 'LG 108 cm (43") NANO 4K UHD AI TV NU870 2026',
+    name: 'LG (43") NANO 4K UHD AI TV NU870 2026',
     category: "tv-audio-video",
     subcategory: "nanocell-tvs",
     price: 132000,
@@ -61,7 +61,7 @@ export const products: Product[] = [
   },
   {
     slug: "lg-qned8aa-43-4k-smart-tv",
-    name: 'LG 108 cm (43") QNED 8AA Smart TV with α7 AI Processor 4K Gen8',
+    name: 'LG (43") QNED 8AA Smart TV with α7 AI Processor 4K Gen8',
     category: "tv-audio-video",
     subcategory: "qned-miniled-tvs",
     price: 148000,
@@ -81,7 +81,7 @@ export const products: Product[] = [
   },
   {
     slug: "lg-uhd-ua8200-43-4k-smart-tv",
-    name: 'LG 108 cm (43") 4K UHD AI UA8200 Smart TV with α7 AI Processor',
+    name: 'LG (43") 4K UHD AI UA8200 Smart TV with α7 AI Processor',
     category: "tv-audio-video",
     subcategory: "uhd-4k-tvs",
     price: 98000,
@@ -101,7 +101,7 @@ export const products: Product[] = [
   // ---------------------------------------------------------- Home Audio
   {
     slug: "lg-xboom-entertainment-system-karaoke-dj",
-    name: "LG XBOOM Entertainment System with Karaoke & DJ Effects",
+    name: "LG XBOOM Entertainment System with Karaoke",
     category: "tv-audio-video",
     subcategory: "xboom",
     price: 189000,
@@ -178,7 +178,7 @@ export const products: Product[] = [
   // ---------------------------------------------------------- Appliances
   {
     slug: "lg-594l-instaview-door-in-door-matt-black",
-    name: 'LG 594L Side-by-Side Fridge with InstaView Door-in-Door™ in Matt Black',
+    name: 'LG 594L Side-by-Side Fridge with InstaView Door-in-Door™',
     category: "appliances",
     subcategory: "instaview-door-in-door",
     price: 425000,
@@ -196,6 +196,7 @@ export const products: Product[] = [
     inStock: true,
     isFeatured: true,
     rank: 3,
+    imageInset: "roomy",
   },
   {
     slug: "lg-neochef-charcoal-healthy-oven",
@@ -256,7 +257,7 @@ export const products: Product[] = [
   // ------------------------------------------------------- Air Solutions
   {
     slug: "lg-24000btu-dual-inverter-split-ac-thinq",
-    name: "LG 24,000 BTU Dual Inverter Split AC with ThinQ (Wi-Fi), 4 Way Swing",
+    name: "LG 24,000 BTU Dual Inverter Split AC with ThinQ",
     category: "air-solutions",
     subcategory: "split-air-conditioners",
     price: 285000,
@@ -278,7 +279,7 @@ export const products: Product[] = [
   },
   {
     slug: "lg-12000btu-dual-inverter-convertible-5in1-smart-split",
-    name: "LG 12,000 BTU Dual Inverter Smart Super Convertible 5-in-1 Split",
+    name: "LG 12,000 BTU Dual Inverter Smart Super Convertible",
     category: "air-solutions",
     subcategory: "inverter-air-conditioners",
     price: 165000,
@@ -390,7 +391,7 @@ export const products: Product[] = [
   },
   {
     slug: "lg-ultragear-27-fhd-ips-gaming-monitor-freesync",
-    name: 'LG UltraGear™ 27" FHD IPS Gaming Monitor with AMD FreeSync™',
+    name: 'LG UltraGear™ 27" FHD IPS Gaming Monitor',
     category: "computers",
     subcategory: "gaming-monitors",
     price: 54900,

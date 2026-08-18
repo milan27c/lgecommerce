@@ -758,6 +758,12 @@
   padding: 12%;
 }
 
+/* Slightly tighter inset for one product card whose shot reads small at the
+   standard 12% — see Product.imageInset. */
+@utility p-tile-roomy {
+  padding: 9%;
+}
+
 /* Same inset on the 3:2 card tile. Percentage padding resolves against width,
    so the vertical value is scaled down to keep the visual inset even. */
 @utility p-tile-card {

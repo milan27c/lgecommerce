@@ -51,6 +51,8 @@ export interface Product {
   isNew?: boolean;
   isFeatured?: boolean;
   rank?: number;
+  /** Slightly reduces the image tile's inset for this product's card only. */
+  imageInset?: "roomy";
 }
 
 export interface Banner {
