@@ -299,6 +299,15 @@ export function InfoIcon(props: IconProps) {
   );
 }
 
+export function ChatIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 6.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9.5L5 20v-3.5H6a2 2 0 0 1-2-2Z" />
+      <path d="M8 9.5h8M8 12.8h5" />
+    </svg>
+  );
+}
+
 /** Google "G" mark — brand colours are inherent to the logo, not a site token. */
 export function GoogleIcon(props: IconProps) {
   return (
