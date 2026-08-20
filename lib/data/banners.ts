@@ -6,10 +6,11 @@ export const heroBanners: Banner[] = [
     id: "fresh-refrigerators",
     headline: "Freshness,\nMade Effortless",
     cta: { label: "Shop refrigerators", href: "/c/appliances/refrigerators" },
-    image: "/images/hero/newhero1.jpg",
+    image: "/images/hero/lgs01.jpeg",
     mobileImage: "/images/hero/newmobile1.png",
     tone: "dark",
     scrimOpacity: 0.6,
+    hideText: true,
   },
   {
     id: "together-tv",
@@ -18,6 +19,7 @@ export const heroBanners: Banner[] = [
     image: "/images/hero/newhero2.png",
     mobileImage: "/images/hero/newmoblile2.png",
     tone: "dark",
+    hideText: true,
   },
 ];
 
