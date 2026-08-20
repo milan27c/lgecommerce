@@ -76,14 +76,23 @@ export function HeroCarousel() {
                     active && "animate-ken-burns",
                   )}
                 />
-                <Image
-                  src={banner.mobileImage ?? banner.image}
-                  alt=""
-                  fill
-                  sizes="100vw"
-                  loading={position === 0 ? "eager" : "lazy"}
-                  className={cn("object-cover md:hidden", active && "animate-ken-burns")}
-                />
+                <div
+                  className="absolute inset-0 md:hidden"
+                  style={
+                    banner.mobileImageScale
+                      ? { transform: `scale(${banner.mobileImageScale})`, transformOrigin: "center" }
+                      : undefined
+                  }
+                >
+                  <Image
+                    src={banner.mobileImage ?? banner.image}
+                    alt=""
+                    fill
+                    sizes="100vw"
+                    loading={position === 0 ? "eager" : "lazy"}
+                    className={cn("object-cover", active && "animate-ken-burns")}
+                  />
+                </div>
               </div>
 
               {!banner.hideText ? (

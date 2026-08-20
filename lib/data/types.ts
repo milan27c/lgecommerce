@@ -67,6 +67,8 @@ export interface Banner {
   scrimOpacity?: number;
   /** Drops the headline/CTA text and its legibility scrim entirely, on every breakpoint. */
   hideText?: boolean;
+  /** Scales the mobile crop up from its centre — for source art without a dedicated portrait crop. */
+  mobileImageScale?: number;
 }
 
 export interface Deal {
