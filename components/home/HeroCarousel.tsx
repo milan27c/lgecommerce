@@ -135,57 +135,61 @@ export function HeroCarousel() {
           );
         })}
 
-        {/* Compact controls — advance and play/pause, bottom-right */}
-        <div className="absolute bottom-4 right-3 z-10 flex items-center gap-2 sm:right-5 lg:bottom-6 lg:right-8">
-          <button
-            type="button"
-            onClick={() => setManualPaused((value) => !value)}
-            aria-label={manualPaused ? "Play slideshow" : "Pause slideshow"}
-            aria-pressed={manualPaused}
-            className={control}
-          >
-            {manualPaused ? <PlayIcon className="size-4" /> : <PauseIcon className="size-4" />}
-          </button>
-          <button
-            type="button"
-            onClick={() => goTo(index + 1)}
-            aria-label="Next slide"
-            className={control}
-          >
-            <ChevronRightIcon className="size-4" />
-          </button>
-        </div>
-
-        {/* Dots with a progress fill on the active one. */}
-        <div className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-2 lg:bottom-6">
-          {heroBanners.map((banner, position) => {
-            const active = position === index;
-            return (
+        {heroBanners.length > 1 ? (
+          <>
+            {/* Compact controls — advance and play/pause, bottom-right */}
+            <div className="absolute bottom-4 right-3 z-10 flex items-center gap-2 sm:right-5 lg:bottom-6 lg:right-8">
               <button
-                key={banner.id}
                 type="button"
-                onClick={() => goTo(position)}
-                aria-label={`Go to slide ${position + 1}`}
-                aria-current={active}
-                className={cn(
-                  "h-1.5 overflow-hidden rounded-full transition-colors dur-base ease-out",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
-                  active ? "w-10 bg-ink-900/20" : "w-1.5 bg-ink-900/25 hover:bg-ink-900/50",
-                )}
+                onClick={() => setManualPaused((value) => !value)}
+                aria-label={manualPaused ? "Play slideshow" : "Pause slideshow"}
+                aria-pressed={manualPaused}
+                className={control}
               >
-                {active ? (
-                  <span
-                    key={`${banner.id}-${index}`}
-                    className={cn(
-                      "block h-full w-full origin-left rounded-full bg-ink-900",
-                      paused ? "scale-x-100" : "animate-dot-progress",
-                    )}
-                  />
-                ) : null}
+                {manualPaused ? <PlayIcon className="size-4" /> : <PauseIcon className="size-4" />}
               </button>
-            );
-          })}
-        </div>
+              <button
+                type="button"
+                onClick={() => goTo(index + 1)}
+                aria-label="Next slide"
+                className={control}
+              >
+                <ChevronRightIcon className="size-4" />
+              </button>
+            </div>
+
+            {/* Dots with a progress fill on the active one. */}
+            <div className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-2 lg:bottom-6">
+              {heroBanners.map((banner, position) => {
+                const active = position === index;
+                return (
+                  <button
+                    key={banner.id}
+                    type="button"
+                    onClick={() => goTo(position)}
+                    aria-label={`Go to slide ${position + 1}`}
+                    aria-current={active}
+                    className={cn(
+                      "h-1.5 overflow-hidden rounded-full transition-colors dur-base ease-out",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500",
+                      active ? "w-10 bg-ink-900/20" : "w-1.5 bg-ink-900/25 hover:bg-ink-900/50",
+                    )}
+                  >
+                    {active ? (
+                      <span
+                        key={`${banner.id}-${index}`}
+                        className={cn(
+                          "block h-full w-full origin-left rounded-full bg-ink-900",
+                          paused ? "scale-x-100" : "animate-dot-progress",
+                        )}
+                      />
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        ) : null}
       </div>
     </>
   );
