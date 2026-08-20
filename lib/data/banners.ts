@@ -12,6 +12,14 @@ export const heroBanners: Banner[] = [
     scrimOpacity: 0.6,
     hideText: true,
   },
+  {
+    id: "together-tv",
+    headline: "Bring Everyone Together",
+    cta: { label: "Shop LG TVs", href: "/c/tv-audio-video/tvs" },
+    image: "/images/hero/lgs01.jpeg",
+    tone: "dark",
+    hideText: true,
+  },
 ];
 
 export interface SplitBanner {
